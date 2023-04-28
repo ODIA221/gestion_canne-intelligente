@@ -8,7 +8,7 @@ function Sante(){
     }
 
     return(
-        <div className="container" style={{ width: "100vw" }}>
+        <div className="container" style={{ width: "50vw" }}>
         <div className="form-group d-flex" >
         <label htmlFor="date"></label>
         <input

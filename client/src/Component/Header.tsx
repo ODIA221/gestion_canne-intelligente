@@ -9,24 +9,24 @@ import  io from 'socket.io-client';
 
 function Header() {
   let [user, etatUser] = useState(true);
-
+  const navigate = useNavigate()
   return (
     <div id='entête'>
 
       {/* //Menu de navigation */}
       {!user ? 
       <div id='menuNav' >
-      <button id="btnMenuNav">Tableau de bord </button>
-      <button id="btnMenuNav">Se déconnecter</button> 
+      <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
+      <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
-           <button id="btnMenuNav">Tableau de bord </button>
-           <button id="btnMenuNav">Inscrire un utilisateur</button> 
+           <button id="btnMenuNav"><Link to="/Dashboard/Admin"> Tableau de bord  </Link></button>
+           <button id="btnMenuNav"><Link to="/Dashboard/Inscription"> Inscrire un utilisateur </Link></button> 
    
-           <select id="btnMenuNav">
+           <select id="btnMenuNav" onChange={(e) => navigate(e.target.value)}>
              <option>Compte</option>
-             <option value='/Dashboard/ParametrePlante' >Modification mot de passe</option>
-             <option value='/Dashboard/Historique'>Déconnexion</option>
+             <option value='/Dashboard/Modifmdp'>Modification mot de passe</option>
+             <option value='/'>Déconnexion</option>
            </select>
          </div>
    

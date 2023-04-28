@@ -5,13 +5,13 @@ import "./Style2.css";
 function Admin() {
 
   return (
-    <div className="container" style={{ width: "100vw" }}>
+    <div className="container" style={{ width: "75vw" }}>
       <div className="form-group d-flex">
         <input className="rech" placeholder=" recherchez un utilisateur ..." />
         <a href=""><img className="ima" src="../../src/assets/archi.png" alt="Achivés" title="liste des archivés"/>
         </a>
       </div>
-      <h6>Liste de tous les utilisateurs actifs</h6>
+      <h4>Liste de tous les utilisateurs actifs</h4>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>

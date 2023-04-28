@@ -7,9 +7,9 @@ function Donneconcerne() {
     return(
 
       
-      <div className="row g-3 gap-5" id='borde'>
+      <div className="row g-3 gap-5" id='borde2'>
       <div className="col" id='form'>
-        <h5>Modifié les données du concerné</h5><br />
+        <h6>Modifié les données du concerné</h6><br />
       <label>Prenom</label>
         <input type="text" className="form-control" placeholder="" aria-label=""/>
         <label>Nom</label>
@@ -23,9 +23,8 @@ function Donneconcerne() {
         <button type="submit" id='butsuj'>Modifié</button>
         </div>
         <div className="col d-flex" id='form'>
-            <h5>Informations du concerné</h5>
-            <div className='d-flex'>
-        
+            <h6>Informations du concerné</h6>
+            <div className='d-flex-wrap'>
           </div>
             
         </div>
