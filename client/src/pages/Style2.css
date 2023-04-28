@@ -6,21 +6,24 @@
    
 }
 #ContainerbtnSidebar{
-    width: 25%;
-   
+    width: 22%;
+    box-shadow: 10px 0px 15px 2px #004446;
   
 }
 #btnSidebar{
     width: 100%;
-    background-color: #004446;
+    background-color: #fff;
     font-size: 20px;
-    color: white;
+    color: #004446;
     padding: 3% ;
     border: none;
 }
 #btnSidebar:hover{
-    background-color: #00828d;
+    background-color: #004446;
+    box-shadow: 10px 0px 25px 3px #fff;
+    color: #fff;
 }
 #btnSidebar.active{
-    background-color: #00828d;
+    background-color: #004446;
+    color: #fff;
 }
