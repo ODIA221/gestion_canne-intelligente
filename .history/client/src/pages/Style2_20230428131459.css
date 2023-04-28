@@ -1,0 +1,29 @@
+.rech{
+    border-radius: 5px;
+
+}
+.the{
+    background-color: #377a7c;
+    color: white;
+}
+.ico{
+    color: red;
+}
+.ima{
+margin-left: 800px;
+width: 30px;
+height: 30px;
+}
+#form{
+    background-color:#377a7c ;
+}
+#butins{
+    color: white;
+    background-color: #377a7c;
+    border-radius: 10px;
+    padding: 5px;
+}
+#borde{
+ border-radius: 10px;
+ box-shadow: 1% 1% 1% 1%;
+}
