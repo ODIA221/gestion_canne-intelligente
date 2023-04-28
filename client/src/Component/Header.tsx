@@ -7,23 +7,30 @@ import { Link, useNavigate } from 'react-router-dom'
 import {useForm } from "react-hook-form";
 import  io from 'socket.io-client';
 
-
 function Header() {
+  let [user, etatUser] = useState(true);
 
   return (
     <div id='entête'>
 
       {/* //Menu de navigation */}
+      {!user ? 
       <div id='menuNav' >
-        <button id="btnMenuNav">Tableau de bord </button>
-        <button id="btnMenuNav">Inscrire un utilisateur</button> 
-
-        <select id="btnMenuNav">
-          <option>Compte</option>
-          <option value='/Dashboard/ParametrePlante' >Modification mot de passe</option>
-          <option value='/Dashboard/Historique'>Déconnexion</option>
-        </select>
-      </div>
+      <button id="btnMenuNav">Tableau de bord </button>
+      <button id="btnMenuNav">Se déconnecter</button> 
+    </div>:
+           <div id='menuNav' >
+           <button id="btnMenuNav">Tableau de bord </button>
+           <button id="btnMenuNav">Inscrire un utilisateur</button> 
+   
+           <select id="btnMenuNav">
+             <option>Compte</option>
+             <option value='/Dashboard/ParametrePlante' >Modification mot de passe</option>
+             <option value='/Dashboard/Historique'>Déconnexion</option>
+           </select>
+         </div>
+   
+       }
       {/* //logo, description et photo serre */}
       <div id='infoNav' >
         <div > <img src={logoOumaAgri} id="imageHeader" alt="Logo Ouma Agri" /></div>
@@ -36,9 +43,6 @@ sur ses produits et également visualiser  l’état et la localisation de votre
         <div id="VTR">
           <img src={image1} id="ImageVTR" alt="" />
         </div>
-        
-
-
       </div>
     
 

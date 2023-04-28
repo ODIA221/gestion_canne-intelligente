@@ -1,0 +1,26 @@
+#container2{
+    display: flex;
+    flex-wrap: wrap;
+    
+    
+   
+}
+#ContainerbtnSidebar{
+    width: 25%;
+   
+  
+}
+#btnSidebar{
+    width: 100%;
+    background-color: #004446;
+    font-size: 20px;
+    color: white;
+    padding: 3% ;
+    border: none;
+}
+#btnSidebar:hover{
+    background-color: #00828d;
+}
+#btnSidebar.active{
+    background-color: #00828d;
+}
