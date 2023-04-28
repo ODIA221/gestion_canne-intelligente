@@ -4,8 +4,8 @@ import "./Style2.css";
 function Dashbord(){
 return(
     <div className='container'>
-        <div className='bg-danger'>
-        <span>momo</span>
+        <div className='bg-dark'>
+        <span>jij,isiediji</span>
         </div>
     </div>
 );

@@ -23,6 +23,7 @@ function Donneconcerne() {
         <div className="col d-flex" id='form'>
             <h5>Informations du concerné</h5>
             <div className='d-flex'>
+                
           </div>
             
         </div>

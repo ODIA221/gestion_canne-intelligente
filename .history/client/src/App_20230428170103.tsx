@@ -9,7 +9,7 @@ import Modifmdp from './pages/Modifmdp'
 import Sante from './pages/Sante'
 import Deplacement from './pages/Deplacement'
 import Donneconcerne from './pages/Donneconcerne'
-import Dashbord from './pages/Dashbord'
+import Dashbord from './pages/'
 
 function App() {
   const [count, setCount] = useState(0)

@@ -5,7 +5,7 @@ function Dashbord(){
 return(
     <div className='container'>
         <div className='bg-danger'>
-        <span>momo</span>
+        <span>ji</span>
         </div>
     </div>
 );

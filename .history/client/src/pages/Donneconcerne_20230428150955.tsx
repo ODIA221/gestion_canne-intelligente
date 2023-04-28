@@ -5,6 +5,8 @@ import "./Style2.css";
 
 function Donneconcerne() {
     return(
+
+      
       <div className="row g-3 gap-5" id='borde'>
       <div className="col" id='form'>
         <h5>Modifié les données du concerné</h5><br />
@@ -23,6 +25,7 @@ function Donneconcerne() {
         <div className="col d-flex" id='form'>
             <h5>Informations du concerné</h5>
             <div className='d-flex'>
+    
           </div>
             
         </div>
