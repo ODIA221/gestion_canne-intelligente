@@ -8,10 +8,10 @@ function Admin() {
     <div className="container" style={{ width: "100vw" }}>
       <div className="form-group d-flex">
         <input className="rech" placeholder=" recherchez un utilisateur ..." />
-        <a href=""><img className="ima" src="../../src/assets/archi.png" alt="Achivés" title="liste des archivés"/>
+        <a href=""><img className="ima" src="../../src/assets/desarchi.png" alt="Achivés" title="liste des actifs"/>
         </a>
       </div>
-      <h6>Liste de tous les utilisateurs actifs</h6>
+      <h6>Liste de tous les utilisateurs inactifs</h6>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>
@@ -27,8 +27,9 @@ function Admin() {
             <td>MAT109</td>
             <td>Maman</td>
             <td>Diallo</td>
-            <td className="ico"><span className="material-symbols-outlined">
-              archive </span></td>
+            <td><span className="material-symbols-outlined">
+unarchive
+</span></td>
           </tr>
           {/*             ))}
  */}            </tbody>

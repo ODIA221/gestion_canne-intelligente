@@ -4,13 +4,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Inscription from './pages/Inscription'
 import Admin from './pages/Admin'
+import Archive from './pages/Archive'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-  <Admin/>       
+  <Inscription/>       
     </div>
   )
 }
