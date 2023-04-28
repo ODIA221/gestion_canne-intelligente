@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import Header from './Component/Header'
+import Sidebar from './Component/Sidebar'
+import Dashboard from './pages/Dashbord'
 import Inscription from './pages/Inscription'
 import Admin from './pages/Admin'
 import Archive from './pages/Archive'
@@ -10,14 +11,30 @@ import Sante from './pages/Sante'
 import Deplacement from './pages/Deplacement'
 import Donneconcerne from './pages/Donneconcerne'
 import Dashbord from './pages/Dashbord'
+import { Route, Routes } from 'react-router-dom'
+import Connexion from './pages/Connexion'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <div className="App">
-  <Dashbord/>       
-    </div>
+    <div className='pages'>
+    <>
+    <Routes>
+        <Route index path="/" element={<Connexion/>} />
+        <Route path='/Dashboard' element={<Dashboard/>}>
+            <Route path='Archive'  element={<Archive/>}/>
+            <Route   path='Admin' element={<Admin />}/>
+            <Route path='Deplacement' element={<Deplacement />}/>
+            <Route path='Inscription' element={<Inscription />}/>
+            <Route path='Sante' element={<Sante />}/>
+            <Route path='Modifmdp' element={<Modifmdp />}/>
+            <Route path='Donneconcerne' element={<Donneconcerne />}/>
+        </Route>
+
+    </Routes>
+    </>
+  </div>
   )
 }
 
