@@ -27,25 +27,31 @@ export default function Connexion() {
         <form id="formBody" onSubmit={handleSubmit(onSubmit)}>
         <div id='titreConnexion'>Connexion</div>
             <div className="mb-3">
-                <div><label className="labelInputConnexion">Ididentifiant Canne</label></div>
-                <input 
-                   /*  className="form"  */
-                    className="formInput" 
-                    aria-describedby="emailHelp"
-                    placeholder="Id Canne" 
-                    {...register("id_canne", {
-                        required: "Champ Obligatoire",
-                        pattern:{
-                            value: /^[a-zA-Z]+[0-9-]+$/i,
-                            message: "Identifiant incorrect",
-                        } 
-                    })}
-                />
-                {/* Message d'erreurs */}
-                {errors.id_canne && <small className='err'>{errors.id_canne.message  }</small>}
+                <div  className="labelInputConnexion">
+                    <label>
+                        Ididentifiant Canne
+                    </label>
+                </div>
+                <div>
+                    <input 
+                    /*  className="form"  */
+                        className="formInput" 
+                        aria-describedby="emailHelp"
+                        placeholder="Id Canne" 
+                        {...register("id_canne", {
+                            required: "Champ Obligatoire",
+                            pattern:{
+                                value: /^[a-zA-Z]+[0-9-]+$/i,
+                                message: "Identifiant incorrect",
+                            } 
+                        })}
+                    />
+                    {/* Message d'erreurs */}
+                    {errors.id_canne && <small className='err'>{errors.id_canne.message  }</small>}
+                </div>
             </div>
             <div className="mb-3">
-                <div><label  className="labelInputConnexion">Mot de passe</label></div>
+                <div   className="labelInputConnexion"><label>Mot de passe</label></div>
                 <input type="password" 
                     /* className="form"  */
                     className="formInput"
