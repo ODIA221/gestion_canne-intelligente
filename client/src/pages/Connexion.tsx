@@ -19,36 +19,36 @@ export default function Connexion() {
     /* btn ctrl saisie */
     const onSubmit = (data: any) => console.log("");
 
-    const message="";
+    const message: string =""
 
   return (
     
-    <div className='Container'>
-        <div id='titre'>Connexion</div>
-        <form className='connexion' onSubmit={handleSubmit(onSubmit)}>
+    <body className='Container' id="corp">
+        <form id="formBody" onSubmit={handleSubmit(onSubmit)}>
+        <div id='titreConnexion'>Connexion</div>
             <div className="mb-3">
-                <label className="label">Id Canne</label>
+                <div><label className="labelInputConnexion">Ididentifiant Canne</label></div>
                 <input 
-                    className="form" 
-                    id="form" 
+                   /*  className="form"  */
+                    className="formInput" 
                     aria-describedby="emailHelp"
-                    placeholder="Id-Canne" 
+                    placeholder="Id Canne" 
                     {...register("id_canne", {
                         required: "Champ Obligatoire",
                         pattern:{
                             value: /^[a-zA-Z]+[0-9-]+$/i,
-                            message: "Id incorrect",
+                            message: "Identifiant incorrect",
                         } 
                     })}
                 />
                 {/* Message d'erreurs */}
-                {errors.id_canne && <small className='err'>{errors.id_canne.message }</small>}
+                {errors.id_canne && <small className='err'>{errors.id_canne.message  }</small>}
             </div>
             <div className="mb-3">
-                <label  className="label">Mot de passe</label>
+                <div><label  className="labelInputConnexion">Mot de passe</label></div>
                 <input type="password" 
-                    className="form" 
-                    id="form"
+                    /* className="form"  */
+                    className="formInput"
                     placeholder="Mot de passe" 
                     {...register("password", {
                         required: "Champ Obligatoire",
@@ -65,8 +65,8 @@ export default function Connexion() {
                 {/* Message d'erreurs */}
                 {errors.password && <small className='err'>{errors.password.message}</small>}
             </div>
-            <button type="submit" id="btn">Connexion</button>
+            <button type="submit" id="btnConnexion">Connexion</button>
         </form>
-    </div>
+    </body>
   )
 }
