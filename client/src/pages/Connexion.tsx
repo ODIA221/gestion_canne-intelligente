@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form";
 import "./Style2.css";
 import axios from "axios";
 
+/* endPoint api */
+const ENDPOINT = "http://localhost:5000/api/connexion";
+
 export default function Connexion() {
 
     /* Controle de saisie */
@@ -19,11 +22,56 @@ export default function Connexion() {
     /* btn ctrl saisie */
     const onSubmit = (data: any) => console.log("");
 
-    const message: string =""
+
+
+    /* pour se connecter */
+const connexion = (e:any) =>{
+   /*  e.prevenDefault(); */
+    
+    const data: { id_canne: string, password: string } = {
+        id_canne: (document.getElementById("id_canne") as HTMLInputElement).value,
+        password: (document.getElementById("password") as HTMLInputElement).value,
+      };
+        try{
+          
+            axios
+            .post(ENDPOINT, data)
+            .then((response)  =>{ 
+                /* vérification token */
+                if(response?.data?.token){
+                    /* stockage du token dans localStorage */
+                    localStorage.setItem('token', response?.data?.token)
+                    localStorage.setItem('id', response?.data?._id)
+                    /* redirection si token est bon */
+                    window.location.pathname = '/Dashboard';
+                    
+                }
+            })
+            .then(data =>{
+                /* setLogin(data) */
+               /*  setIsLoading(true) */
+                setErrror (null)
+                
+            })
+            .catch(error =>{
+                /* console.log(error) */
+                setErrror (error.message)
+               /*  setIsLoading(false) */
+                // Erreur de la requête
+                if (error.response) {
+                // Le serveur a renvoyé une réponse avec un code d'erreur
+                setErrror(error.response.data.message);
+                }
+        })
+            }catch(err:any){
+            console.log(err.message); //failed to match
+            return err.json();           
+        }
+}
 
   return (
     
-    <body className='Container' id="corp">
+    <body id="corp">
         <form id="formBody" onSubmit={handleSubmit(onSubmit)}>
         <div id='titreConnexion'>Connexion</div>
             <div className="mb-3">
@@ -38,16 +86,13 @@ export default function Connexion() {
                         className="formInput" 
                         aria-describedby="emailHelp"
                         placeholder="Id Canne" 
+                        id="id_canne"
                         {...register("id_canne", {
                             required: "Champ Obligatoire",
-                            pattern:{
-                                value: /^[a-zA-Z]+[0-9-]+$/i,
-                                message: "Identifiant incorrect",
-                            } 
                         })}
                     />
                     {/* Message d'erreurs */}
-                    {errors.id_canne && <small className='err'>{errors.id_canne.message  }</small>}
+                    {errors.id_canne && <small className='err'>{errors?.id_canne?.message?.toString()  }</small>}
                 </div>
             </div>
             <div className="mb-3">
@@ -55,6 +100,7 @@ export default function Connexion() {
                 <input type="password" 
                     /* className="form"  */
                     className="formInput"
+                    id="password"
                     placeholder="Mot de passe" 
                     {...register("password", {
                         required: "Champ Obligatoire",
@@ -69,9 +115,9 @@ export default function Connexion() {
                     })}
                 />
                 {/* Message d'erreurs */}
-                {errors.password && <small className='err'>{errors.password.message}</small>}
+                {errors.password && <small className='err'>{errors?.password?.message?.toString()}</small>}
             </div>
-            <button type="submit" id="btnConnexion">Connexion</button>
+            <button type="submit" id="btnConnexion" onClick={(e) =>connexion(e)}>Connexion</button>
         </form>
     </body>
   )

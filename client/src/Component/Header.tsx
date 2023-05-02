@@ -10,6 +10,13 @@ import  io from 'socket.io-client';
 function Header() {
   let [user, etatUser] = useState(true);
   const navigate = useNavigate()
+
+        // fonction de  déconnexion
+        let logout = () => {
+          localStorage.removeItem('token')
+          navigate('/')
+      }
+
   return (
     <div id='entête'>
 
