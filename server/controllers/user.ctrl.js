@@ -11,43 +11,83 @@ mongoose = require('mongoose')
 mongoose.set('strictQuery', true);
 
 
+// Recuperez tous les utilisateurs
+router.route('/').get((req, res, next) => {
+  userSchema.find((error, response)=> {
+    if (error) {
+      return next(error)
+    } else {
+      return res.status(200).json(response)
+    }
+  })
+})
 
 
-/* Inscription  */
-router.post('/ajouter',  (req, res, next) => {
-  console.log(req.body)
+/* inscription avec id_canne autogébérer */
+/*  */
+router.post('/ajouter', async (req, res, next) => {
+  try {
+    const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // Get the last user
+    let canneNumber = 1; // Initialize canneNumber to 1 by default
+    if (lastUser) {
+      const canneString = lastUser.id_canne.substring(5); // Get the last canne number
+      if (!isNaN(canneString)) { // Check if the canne number is a valid number
+        canneNumber = parseInt(canneString) + 1; // Increment the canne number
+      }
+    }
+    const id_canne = `canne${canneNumber}`; // Generate id_canne
+    
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // Hash password
+    const user = new userSchema({
+      prenom: req.body.prenom,
+      nom: req.body.nom,
+      id_canne,
+      password: hashedPassword,
+      photo: req.body.photo,
+      prenom1: req.body.prenom1,
+      nom1: req.body.nom1,
+      telephone: req.body.telephone,
+      adresse: req.body.adresse,
+      etat: true, // Default value for etat is true
+      role: req.body.role
+    });
+    const savedUser = await user.save(); // Save user to database
+    return res.status(201).json({
+      message: 'Inscription réussie !',
+      result: savedUser
+    });
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({
+        error: error.message
+      });
+    } else if (error.message.includes('duplicate key error')) {
+      return res.status(409).json({
+        error: 'Compte déjà existant !'
+      });
+    } else {
+      return res.status(500).json({
+        error: 'Une erreur est survenue lors de l\'inscription'
+      });
+    }
+  }
+});
 
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-      const user = new userSchema({
-        prenom: req.body.prenom,
-        nom: req.body.nom,
-        id_canne: req.body.id_canne,
-        password: hash,
-        photo: req.body.photo,
-        prenom1: req.body.prenom1,
-        nom1: req.body.nom1,
-        telephone: req.body.telephone,
-        adresse: req.body.adresse,
-        etat: req.body.etat,
-        role: req.body.role
-      })
-      user.save()
-        .then((response) => {
-          console.log(response);
-          return res.status(201).json({
-            message: 'Inscription réussie !',
-            result: response,
-          })
-        })
-        .catch((error) => {
-          return res.status(409).json({
-            error: error.message.split("id_canne:")[1],
-          })
-          
-        })
+
+/* Archiver utilisateur */
+router.put('/archiver/:id', (req, res, next) => {
+  const userId = req.params.id;
+  userSchema.findByIdAndUpdate(userId, {etat: false})
+    .then(() => {
+      res.status(200).json({
+        message: "Utilisateur archivé avec succès !"
+      });
     })
-},
-)
+    .catch(error => {
+      res.status(400).json({ error });
+    });
+});
+
 
 //historique serre
 router.post('/envoi',  (req, res, next) => {
@@ -135,27 +175,6 @@ router.post('/connexion', (req, res) => {
 })
 
 
-// Recuperez tous les utilisateurs
-router.route('/').get((req, res, next) => {
-  userSchema.find((error, response)=> {
-    if (error) {
-      return next(error)
-    } else {
-      return res.status(200).json(response)
-    }
-  })
-})
-
-// Recuperez un utilisateur
-router.route('/lire/:id').get((req, res) => {
-  userSchema.findById(req.params.id, (error, data) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.json(data);
-    }
-  });
-});
 
 // Recuperez et autoriser la connexion d'un utilisateur
 router.route('/profile/:id').get(authorize, (req, res, next) => {
@@ -201,9 +220,49 @@ router.patch('/modifierMdp/:id', async(req, res) => {
       res.status(400).json({ message: error.message })
   }
 })
+
  
  
   
 
 
 module.exports = router
+
+
+
+
+/* Inscription  */
+/* router.post('/inscription',  (req, res, next) => {
+  console.log(req.body)
+
+    bcrypt.hash(req.body.password, 10).then((hash) => {
+      const user = new userSchema({
+        prenom: req.body.prenom,
+        nom: req.body.nom,
+        id_canne: req.body.id_canne,
+        password: hash,
+        photo: req.body.photo,
+        prenom1: req.body.prenom1,
+        nom1: req.body.nom1,
+        telephone: req.body.telephone,
+        adresse: req.body.adresse,
+        etat: req.body.etat,
+        role: req.body.role
+      })
+      user.save()
+        .then((response) => {
+          console.log(response);
+          return res.status(201).json({
+            message: 'Inscription réussie !',
+            result: response,
+          })
+        })
+        .catch((error) => {
+          return res.status(409).json({
+            error: error.message.split("id_canne:")[1],
+          })
+          
+        })
+    })
+},
+) */

@@ -59,3 +59,23 @@ unarchive
 
 
 export default Admin;
+
+
+/* 
+fetch(`/api/users/archiver/${userId}`, {
+  method: 'PUT'
+})
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Une erreur est survenue');
+    }
+  })
+  .then(data => {
+    console.log(data.message);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+ */

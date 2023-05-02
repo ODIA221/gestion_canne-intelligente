@@ -19,7 +19,7 @@ function Modifmdp() {
         <label>Confirmation mot de passe<span className='text-danger'>*</span></label>
         <input type="text" className="form-control" placeholder="" aria-label=""/>
       </div>
-      <button type="submit" id='butins'>Modifié</button>
+      <button type="submit" id='butins'>Modifier</button>
 
       </div>
       );
