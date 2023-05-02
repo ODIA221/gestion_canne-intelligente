@@ -10,6 +10,13 @@ import  io from 'socket.io-client';
 function Header() {
   let [user, etatUser] = useState(true);
   const navigate = useNavigate()
+
+        // fonction de  déconnexion
+        let logout = () => {
+          localStorage.removeItem('token')
+          navigate('/')
+      }
+
   return (
     <div id='entête'>
 
@@ -17,7 +24,7 @@ function Header() {
       {!user ? 
       <div id='menuNav' >
       <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
-      <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
+      <button id="btnMenuNav"><Link to="/" onClick={logout}>Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
            <button id="btnMenuNav"><Link to="/Dashboard/Admin"> Tableau de bord  </Link></button>
