@@ -23,7 +23,7 @@ export default function Connexion() {
 
   return (
     
-    <body className='Container' id="corp">
+    <body className='Container-fuid' id="corp">
         <form id="formBody" onSubmit={handleSubmit(onSubmit)}>
         <div id='titreConnexion'>Connexion</div>
             <div className="mb-3">
@@ -40,14 +40,10 @@ export default function Connexion() {
                         placeholder="Id Canne" 
                         {...register("id_canne", {
                             required: "Champ Obligatoire",
-                            pattern:{
-                                value: /^[a-zA-Z]+[0-9-]+$/i,
-                                message: "Identifiant incorrect",
-                            } 
                         })}
                     />
                     {/* Message d'erreurs */}
-                    {errors.id_canne && <small className='err'>{errors.id_canne.message  }</small>}
+                    {errors.id_canne && <small className='err'>{errors?.id_canne?.message?.toString()  }</small>}
                 </div>
             </div>
             <div className="mb-3">
@@ -69,7 +65,7 @@ export default function Connexion() {
                     })}
                 />
                 {/* Message d'erreurs */}
-                {errors.password && <small className='err'>{errors.password.message}</small>}
+                {errors.password && <small className='err'>{errors?.password?.message?.toString()}</small>}
             </div>
             <button type="submit" id="btnConnexion">Connexion</button>
         </form>
