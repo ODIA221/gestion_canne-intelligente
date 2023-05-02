@@ -9,7 +9,8 @@ const api = require('./controllers/user.ctrl')
 
 /* connexion bd */
 const url = mongoose  /* mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.1 */
-  .connect("mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente ")/* mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente */
+  // .connect("mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente ")/* mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente */
+  .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")/* mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente */
   .then((x) => {
     console.log(`Vous êtes connecté à la base de donnée : "${x.connections[0].name}"`)
   })

@@ -1,0 +1,99 @@
+
+
+#container2{
+    min-height:640px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 13%;
+   }
+  
+   #ContainerbtnSidebar{
+    width: 220px;
+    height: 200px;
+    box-shadow: 10px 0px 15px 2px #004446;
+  }
+#btnSidebar{
+    width: 100%;
+    background-color: #fff;
+    font-size: 20px;
+    color: #004446;
+    padding: 3% ;
+    border: none;
+}
+#btnSidebar:hover{
+    background-color: #004446;
+    box-shadow: 10px 0px 25px 3px #fff;
+    color: #fff;
+}
+#btnSidebar.active{
+    background-color: #004446;
+    color: #fff;
+}
+.rech{
+    border-radius: 5px;
+
+}
+.the{
+    background-color: #377a7c;
+    color: white;
+}
+.ico{
+    color: red;
+}
+.ima{
+margin-left: 620px;
+width: 30px;
+height: 30px;
+}
+#form{
+    width: 300px;
+    height: 260px;
+    display: flex;
+    flex-wrap: wrap;
+   
+    background-color:#377a7c ;
+    color: white;
+}
+
+#borde{
+    width: 60%;
+    border-radius: 10px;
+    box-shadow:  1px 1px 12px 1px #377a7c;
+    background-color: #377a7c;
+    margin-left: 20%;
+    }
+#butins{
+    color: #377a7c;
+    background-color: white;
+    border-radius:10px;
+    font-size: 25px;
+}
+#butsuj{
+    margin: 5px 0px 0px 90px;
+    border-radius: 5px;
+    color: #004446;
+}
+#borde2{
+    margin-top: -10%;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow:  1px 1px 12px 1px #377a7c;
+    background-color: #377a7c;
+
+}
+#form2{
+    width: 300px;
+    height: 315px;
+    display: flex;
+    flex-wrap: wrap;
+   
+    background-color:#377a7c ;
+    color: white;
+}
+
+#containerSidebar{
+    position: fixed;
+    margin-top: 30%;
+    margin-right: 55%;
+}

@@ -20,9 +20,9 @@ let userSchema = new Schema({
 
 }, {timestamps: true},
 {
-    collection: 'users'
+    collection: 'CanneUsers'
 })
 
 userSchema.plugin(uniqueValidator, { message: 'Compte déjà existant !' });
 
-module.exports = mongoose.model('users', userSchema)
+module.exports = mongoose.model('CanneUsers', userSchema)

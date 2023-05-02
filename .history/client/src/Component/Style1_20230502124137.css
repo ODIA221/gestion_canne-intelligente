@@ -1,0 +1,89 @@
+
+#ContainerbtnSidebar #btnSidebar #Modifmdp{
+  color: white;
+  border-radius: 10px;
+
+}
+div button Link:hover{
+text-decoration: none;
+color: white;
+}
+#entête{
+  width: 100%;
+  height: 260px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+ 
+
+}
+/* menu navigation */
+#menuNav{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    }
+    
+ #btnMenuNav{
+  width: 100%;
+      background-color: #004446;
+      font-size: 20px;
+      color: white;
+      padding: 1% 4% 1% 4% ;
+      border: none;
+    }
+    #btnMenuNav:hover{
+      background-color: #00828d;
+    }   
+    #btnMenuNav.active{
+      background-color: #00828d;
+  }
+
+   
+    /* description  */
+ #infoNav{
+ 
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  margin-top: 0.2%;
+ }
+  #textHeader{
+    font-size: 14.2px;
+   margin: 1% 3% 0% 3%;
+
+  }
+  #imageHeader{
+    border-radius: 10px;
+   
+  }
+  #imageHeaderD{
+    margin-top: 8px;
+    width: 50%;
+    border-radius: 10px;
+   
+  }
+  
+ /* image header et valeurs temps réelles */
+ #VTR{
+ 
+  width: 100%;
+
+ }
+  #ImageVTR{
+    box-shadow: 1px 1px 1px 1px #004446;
+    width: 100%;
+    height: 23%;
+    margin-top: 0%;
+}
+.links{
+  text-decoration: none;
+  color: black;
+  
+}
+.lien{
+  text-decoration: none;
+  color: white;
+  de
+}

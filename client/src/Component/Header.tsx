@@ -23,16 +23,16 @@ function Header() {
       {/* //Menu de navigation */}
       {!user ? 
       <div id='menuNav' >
-      <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
-      <button id="btnMenuNav"><Link to="/" onClick={logout}>Se déconnecter </Link></button> 
+      <button id="btnMenuNav"><Link to="/Dashbord"> Tableau de bord </Link></button>
+      <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
-           <button id="btnMenuNav"><Link to="/Dashboard/Admin"> Tableau de bord  </Link></button>
-           <button id="btnMenuNav"><Link to="/Dashboard/Inscription"> Inscrire un utilisateur </Link></button> 
+           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button>
+           <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Inscrire un utilisateur </Link></button> 
    
            <select id="btnMenuNav" onChange={(e) => navigate(e.target.value)}>
              <option>Compte</option>
-             <option value='/Dashboard/Modifmdp'>Modification mot de passe</option>
+             <option value='/Dashbord/Modifmdp'>Modification mot de passe</option>
              <option value='/'>Déconnexion</option>
            </select>
          </div>
