@@ -49,7 +49,7 @@ app.use('/api', api)
 app.get('/favicon.ico', (req, res) => res.status(204))
 
 // Define PORT
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 4000
 
 const servers = require('http').createServer(app)
  servers.listen(port, () => {

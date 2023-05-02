@@ -28,7 +28,8 @@ router.post('/ajouter',  (req, res, next) => {
         nom1: req.body.nom1,
         telephone: req.body.telephone,
         adresse: req.body.adresse,
-        etat: req.body.etat
+        etat: req.body.etat,
+        role: req.body.role
       })
       user.save()
         .then((response) => {

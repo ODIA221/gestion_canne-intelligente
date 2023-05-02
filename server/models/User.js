@@ -8,6 +8,7 @@ let userSchema = new Schema({
     nom: { type: String, required:true },
     password: { type: String, required:true },
     etat: { type: Boolean, required:false },
+    role: { type: String, required:false },
     id_canne: { type: String, unique: true, required:false },
 
     /* Données concernés */
@@ -19,9 +20,9 @@ let userSchema = new Schema({
 
 }, {timestamps: true},
 {
-    collection: 'user'
+    collection: 'users'
 })
 
 userSchema.plugin(uniqueValidator, { message: 'Compte déjà existant !' });
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('users', userSchema)
