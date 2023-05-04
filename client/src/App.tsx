@@ -22,7 +22,7 @@ function App() {
     <>
     <Routes>
             <Route index path="/" element={<Connexion/>} />
-            <Route path='/Dashbord' element={<Dashbord/>}>
+            <Route path='/Dashboard' element={<Dashbord/>}>
               <Route path='Archive' element={<Archive/>}/>
               <Route path='Admin' element={<Admin/>}/>
               <Route path='Deplacement' element={<Deplacement/>}/>

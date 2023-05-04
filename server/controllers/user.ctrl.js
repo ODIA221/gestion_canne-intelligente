@@ -27,17 +27,17 @@ router.route('/').get((req, res, next) => {
 /*  */
 router.post('/ajouter', async (req, res, next) => {
   try {
-    const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // Get the last user
-    let canneNumber = 1; // Initialize canneNumber to 1 by default
+    const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // obtenir le dernier inscrit
+    let canneNumber = 1; // initialiser le numéro de la canne à 1
     if (lastUser) {
-      const canneString = lastUser.id_canne.substring(5); // Get the last canne number
-      if (!isNaN(canneString)) { // Check if the canne number is a valid number
-        canneNumber = parseInt(canneString) + 1; // Increment the canne number
+      const canneString = lastUser.id_canne.substring(5); // obtenir le dernier inscrit
+      if (!isNaN(canneString)) { // vérifier si le numéro est valide
+        canneNumber = parseInt(canneString) + 1; // incrémenter le numéro d'incription en fonction des ajout
       }
     }
-    const id_canne = `canne${canneNumber}`; // Generate id_canne
+    const id_canne = `canne${canneNumber}`; // Auto générer un id_canne
     
-    const hashedPassword = await bcrypt.hash(req.body.password, 10); // Hash password
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // Hasher le mot de passe
     const user = new userSchema({
       prenom: req.body.prenom,
       nom: req.body.nom,
@@ -48,10 +48,10 @@ router.post('/ajouter', async (req, res, next) => {
       nom1: req.body.nom1,
       telephone: req.body.telephone,
       adresse: req.body.adresse,
-      etat: true, // Default value for etat is true
+      etat: true, 
       role: req.body.role
     });
-    const savedUser = await user.save(); // Save user to database
+    const savedUser = await user.save(); // enregistrer user dans la base
     return res.status(201).json({
       message: 'Inscription réussie !',
       result: savedUser
