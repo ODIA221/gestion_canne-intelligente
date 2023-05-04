@@ -43,7 +43,7 @@ const connexion = (e:any) =>{
                     localStorage.setItem('token', response?.data?.token)
                     localStorage.setItem('id', response?.data?._id)
                     /* redirection si token est bon */
-                    window.location.pathname = '/Dashboard';
+                    window.location.pathname = '/Dashboard/Admin';
                     
                 }
             })
@@ -74,10 +74,15 @@ const connexion = (e:any) =>{
     <body id="corp">
         <form id="formBody" onSubmit={handleSubmit(onSubmit)}>
         <div id='titreConnexion'>Connexion</div>
+
+            {/* Affichage des message du server */}
+            <div id="errClient">
+                {error && <div>{error}</div>}
+            </div>
             <div className="mb-3">
                 <div  className="labelInputConnexion">
                     <label>
-                        Ididentifiant Canne
+                        Ididentifiant Utilisateur
                     </label>
                 </div>
                 <div>
@@ -96,26 +101,32 @@ const connexion = (e:any) =>{
                 </div>
             </div>
             <div className="mb-3">
-                <div   className="labelInputConnexion"><label>Mot de passe</label></div>
-                <input type="password" 
-                    /* className="form"  */
-                    className="formInput"
-                    id="password"
-                    placeholder="Mot de passe" 
-                    {...register("password", {
-                        required: "Champ Obligatoire",
-                        minLength: {
-                        value: 5,
-                        message: "5 Caractètes au minimum"
-                        },
-                        maxLength: {
-                        value:10,
-                        message: "10 Caractètes au maximum"
-                        }
-                    })}
-                />
-                {/* Message d'erreurs */}
-                {errors.password && <small className='err'>{errors?.password?.message?.toString()}</small>}
+                <div   className="labelInputConnexion">
+                    <label>
+                        Mot de passe
+                    </label>
+                </div>
+                <div>
+                    <input type="password" 
+                        /* className="form"  */
+                        className="formInput"
+                        id="password"
+                        placeholder="Mot de passe" 
+                        {...register("password", {
+                            required: "Champ Obligatoire",
+                            minLength: {
+                            value: 5,
+                            message: "5 Caractètes au minimum"
+                            },
+                            maxLength: {
+                            value:10,
+                            message: "10 Caractètes au maximum"
+                            }
+                        })}
+                    />
+                    {/* Message d'erreurs */}
+                    {errors.password && <small className='err'>{errors?.password?.message?.toString()}</small>}
+                </div>
             </div>
             <button type="submit" id="btnConnexion" onClick={(e) =>connexion(e)}>Connexion</button>
         </form>

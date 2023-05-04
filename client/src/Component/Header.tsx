@@ -6,8 +6,10 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {useForm } from "react-hook-form";
 import  io from 'socket.io-client';
+import axios from 'axios'
 
 function Header() {
+
   let [user, etatUser] = useState(true);
   const navigate = useNavigate()
 
@@ -17,22 +19,24 @@ function Header() {
           navigate('/')
       }
 
+  
+
   return (
     <div id='entête'>
 
       {/* //Menu de navigation */}
       {!user ? 
       <div id='menuNav' >
-      <button id="btnMenuNav"><Link to="/Dashbord"> Tableau de bord </Link></button>
+      <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
       <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
-           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button>
-           <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Inscrire un utilisateur </Link></button> 
+           <button id="btnMenuNav"><Link to="/Dashboard/Admin" className='lien'> Tableau de bord  </Link></button>
+           <button id="btnMenuNav"><Link to="/Dashboard/Inscription" className='lien'> Ajouter utilisateur </Link></button> 
    
            <select id="btnMenuNav" onChange={(e) => navigate(e.target.value)}>
              <option>Compte</option>
-             <option value='/Dashbord/Modifmdp'>Modification mot de passe</option>
+             <option value='/Dashboard/Modifmdp'>Modification Profile</option>
              <option value='/'>Déconnexion</option>
            </select>
          </div>

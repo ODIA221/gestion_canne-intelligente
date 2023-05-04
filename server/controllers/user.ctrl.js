@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const router = express.Router()
 const userSchema = require('../models/User')
-const historiqueSchema = require('../models/Climat')
+const historiqueSchema = require('../models/Sante')
 const authorize = require('../authentification/auth')
 const serverData = require('../index')
 const User = require('../models/User')
@@ -24,7 +24,6 @@ router.route('/').get((req, res, next) => {
 
 
 /* inscription avec id_canne autogébérer */
-/*  */
 router.post('/ajouter', async (req, res, next) => {
   try {
     const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // obtenir le dernier inscrit
@@ -132,7 +131,7 @@ router.post('/connexion', (req, res) => {
     .then((user) => {
       if (!user) {
         return res.status(401).json({
-          message: 'ID inéxistant !',
+          message: 'l\'didentifiant utilisateur n\'existe pas !',
         })
       }
       getUser = user
@@ -188,45 +187,57 @@ router.route('/profile/:id').get(authorize, (req, res, next) => {
     }
   })
 })
+ 
 
-/* Modification mot de passe */
-router.patch('/modifierMdp/:id', async(req, res) => {
+/* modification profile */
+router.patch('/modifierProfile/:id', async(req, res) => {
   try {
-        let { mdpActuel, mdpNouveau } = req.body;
         const id = req.params.id;
         const updatedData = req.body;
         const options = { new: true };
-        let user= userSchema.findById({"_id": req.params.id});
+        let user = userSchema.findById(id);
         if(!user){
           return res.status(404);
         };
       
-          user.then(async(e)=> {
-           /*  console.log(mdpActuel); */
+        user.then(async(e)=> {
+            /* Vérifier le mot de passe actuel */
+            let { mdpActuel, mdpNouveau, nom, prenom } = req.body;
             const testPassword = await bcrypt.compare(mdpActuel, e.password)
 
-                if(testPassword){
-                    const hash = await bcrypt.hash(mdpNouveau, 10);
-                      updatedData.password;
-                      const result = await userSchema.findByIdAndUpdate(
-                      id, {password:hash}, options
-                      );
-                    return res.send(result);
-                }
-                return res.send(' Mdp actuel incorrect');/* no corres */
+            if(!testPassword){
+              return res.send('Mot de passe actuel incorrect');
+            }
+
+            /* Mettre à jour le nom et le prénom */
+            if(nom !== undefined){
+              updatedData.nom = nom;
+            }
+            if(prenom !== undefined){
+              updatedData.prenom = prenom;
+            }
+
+            /* Mettre à jour le mot de passe */
+            if(mdpNouveau !== undefined){
+              const hash = await bcrypt.hash(mdpNouveau, 10);
+              updatedData.password = hash;
+            }
+
+            /* Mettre à jour l'utilisateur */
+            const result = await userSchema.findByIdAndUpdate(id, updatedData, options);
+            return res.send(result);
           });
   }
   catch (error) {
       res.status(400).json({ message: error.message })
   }
-})
-
- 
+});
  
   
 
 
 module.exports = router
+
 
 
 
