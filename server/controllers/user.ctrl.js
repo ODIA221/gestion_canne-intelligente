@@ -12,7 +12,7 @@ mongoose.set('strictQuery', true);
 
 
 // Recuperez tous les utilisateurs
-router.route('/').get((req, res, next) => {
+/* router.route('/').get((req, res, next) => {
   userSchema.find((error, response)=> {
     if (error) {
       return next(error)
@@ -20,7 +20,44 @@ router.route('/').get((req, res, next) => {
       return res.status(200).json(response)
     }
   })
-})
+}) */
+
+
+/*Liste des Actifs */
+router.route('/').get((req, res, next) => {
+  userSchema.find({ etat: true }, (error, response) => {
+    if (error) {
+      return next(error);
+    } else {
+      return res.status(200).json(response);
+    }
+  });
+});
+/* Liste des Archivés */
+router.route('/listeArches').get((req, res, next) => {
+  userSchema.find({ etat: false }, (error, response) => {
+    if (error) {
+      return next(error);
+    } else {
+      return res.status(200).json(response);
+    }
+  });
+});
+
+/* Archiver utilisateur */
+router.put('/archiver/:id', (req, res, next) => {
+  const userId = req.params.id;
+  userSchema.findByIdAndUpdate(userId, {etat: false})
+    .then(() => {
+      res.status(200).json({
+        message: "Utilisateur archivé avec succès !"
+      });
+    })
+    .catch(error => {
+      res.status(400).json({ error });
+    });
+});
+
 
 
 /* inscription avec id_canne autogébérer */
@@ -73,48 +110,6 @@ router.post('/ajouter', async (req, res, next) => {
 });
 
 
-/* Archiver utilisateur */
-router.put('/archiver/:id', (req, res, next) => {
-  const userId = req.params.id;
-  userSchema.findByIdAndUpdate(userId, {etat: false})
-    .then(() => {
-      res.status(200).json({
-        message: "Utilisateur archivé avec succès !"
-      });
-    })
-    .catch(error => {
-      res.status(400).json({ error });
-    });
-});
-
-
-//historique serre
-router.post('/envoi',  (req, res, next) => {
-console.log(req.body)
-
-    const historique = new historiqueSchema({
-      jour: req.body.jour,
-      temperature: req.body.temperature,
-      humsol: req.body.humsol,
-      humserre: req.body.humserre,
-      luminosite: req.body.luminosite,
-
-    })
-    historique.save()
-      .then((response) => {
-        console.log(response);
-        return res.status(201).json({
-          message: 'inssertion réussie !',
-          result: response,
-        })
-      })
-      .catch((error) => {
-        return res.status(409).json({
-        })
-        
-      })
-  })
-  
 // Connexion
 router.post('/connexion', (req, res) => {
   res.header({

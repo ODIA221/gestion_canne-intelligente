@@ -4,9 +4,9 @@ import serre from '../assets/canne.png'
 import image1 from '../assets/imgHeader.png'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {useForm } from "react-hook-form";
+/* import {useForm } from "react-hook-form";
 import  io from 'socket.io-client';
-import axios from 'axios'
+import axios from 'axios' */
 
 function Header() {
 

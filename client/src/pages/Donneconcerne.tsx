@@ -20,7 +20,7 @@ function Donneconcerne() {
         <input type="text" className="form-control" placeholder="" aria-label=""/>
 {/*         <label>Photo</label>
         <input type="text" className="form-control" placeholder="" aria-label=""/> */}
-        <button type="submit" id='butsuj'>Modifié</button>
+        <button type="submit" id='butsuj'>Modifier</button>
         </div>
         <div className="col d-flex" id='form'>
             <h6>Informations du concerné</h6>
