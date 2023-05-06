@@ -81,7 +81,7 @@ function Archive() {
           />
         </a>
       </div>
-      <h4>Liste des utilisateurs archivés</h4>
+      <h4  className="titreActifArchive">Liste des utilisateurs archivés</h4>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>

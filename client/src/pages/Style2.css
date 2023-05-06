@@ -227,3 +227,9 @@ height: 30px;
     flex-wrap: wrap;
 
   }
+  .titreActifArchive{
+    color: #377a7c;
+    font-size: 30px;
+    font-weight: bold;
+
+  }
