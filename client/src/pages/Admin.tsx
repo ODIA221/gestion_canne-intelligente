@@ -5,6 +5,8 @@ import auccuneDonnee from "../assets/auccuneDonnee.gif";
 function Admin() {
   const [donnee, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(7);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/", {
@@ -30,6 +32,32 @@ function Admin() {
   const filteredData = donnee.filter((item: any) =>
     item.id_canne.includes(searchTerm)
   );
+
+  /* Pagination */
+      // Calcul du nombre total de pages
+      const pageCount = Math.ceil(donnee.length / itemsPerPage);
+  
+      // Fonction pour passer à la page suivante
+      const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+      };
+    
+      // Fonction pour passer à la page précédente
+      const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+      };
+    
+      // Fonction pour changer de page
+      const handlePageChange = (pageNumber :any) => {
+        setCurrentPage(pageNumber);
+      };
+    
+      // Index de départ pour l'affichage des données
+      const startIndex = (currentPage - 1) * itemsPerPage;
+    
+      // Index de fin pour l'affichage des données
+      const endIndex = startIndex + itemsPerPage;
+  
 
   return (
     <div className="container" style={{ width: "75vw" }}>
@@ -71,7 +99,7 @@ function Admin() {
             </tr>
             </div>
           ) : (
-            filteredData.map((item: any) => (
+            filteredData.slice(startIndex, endIndex).map((item: any)    => (
               <tr key={item.id}>
                 <td>{new Date(item.createdAt).toLocaleDateString("fr-FR")}</td>
                 <td>{item.id_canne}</td>
@@ -84,27 +112,16 @@ function Admin() {
             ))
           )}
         </tbody>
-         {/* pagination */}
-         <div className="d-flex justify-content-center fixed-bottom">
-            <nav aria-label="Page navigation example">
-              <ul className="pagination">
-                <li className="page-item">
-                  <a className="page-link text-dark" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li className="page-item"><a className="page-link text-dark" href="#">1</a></li>
-                <li className="page-item"><a className="page-link text-dark" href="#">2</a></li>
-                <li className="page-item"><a className="page-link text-dark" href="#">3</a></li>
-                <li className="page-item">
-                  <a className="page-link text-dark" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            </div>
-      </table>
+        </table>
+      {/* pagination */}
+      <div className="containerPagination">
+        {currentPage > 1 && (
+          <button onClick={handlePrevPage} className="pagination">Précédent</button>
+        )}
+        {currentPage < pageCount && (
+          <button onClick={handleNextPage} className="pagination">Suivant</button>
+        )}
+      </div>
     </div>
   );
 }

@@ -58,11 +58,11 @@ const servers = require('http').createServer(app)
 })
 
 // Express error handling
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   setImmediate(() => {
     next(new Error('Une Erreur serser est constatée'))
   })
-})
+}) */
 
 app.use(function (err, req, res, next) {
   console.error(err.message)

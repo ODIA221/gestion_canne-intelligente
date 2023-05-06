@@ -214,3 +214,16 @@ height: 30px;
     font-size: large;
     font-weight: bold;
   }
+  .pagination{
+
+    background-color: #377a7c;
+    color: white;
+
+  }
+  .containerPagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+  }
