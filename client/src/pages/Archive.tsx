@@ -100,7 +100,7 @@ function Archive() {
             <div id="notData">
             <tr>
               <img  src={auccuneDonnee} alt="Aucune donnée"  />
-              <td colSpan={5} id="dataNot">un utilisateur qui n'esiste pas  archivé !</td>
+              <td colSpan={5} id="dataNot">un utilisateur qui n'existe pas  archivé !</td>
             </tr>
             </div>
           ) : (
