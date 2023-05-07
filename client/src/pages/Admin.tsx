@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Style2.css";
 import auccuneDonnee from "../assets/auccuneDonnee.gif";
+import axios from "axios";
 
 function Admin() {
   const [donnee, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/", {
@@ -57,6 +59,17 @@ function Admin() {
     
       // Index de fin pour l'affichage des données
       const endIndex = startIndex + itemsPerPage;
+
+      /* archiver */
+      const handleClick = () => {
+        axios.put(`/archiver/${userId}`)
+          .then(response => {
+            console.log(response.data.message);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      };
   
 
   return (
@@ -95,7 +108,7 @@ function Admin() {
             <tr>
               
               <img src={auccuneDonnee} alt="Aucune donnée" />
-              <td colSpan={5} id="dataNot">un utilisateur qui n'esiste pas !</td>
+              <td colSpan={5} id="dataNot">un utilisateur qui n'existe pas !</td>
             </tr>
             </div>
           ) : (
@@ -106,7 +119,7 @@ function Admin() {
                 <td>{item.nom}</td>
                 <td>{item.prenom}</td>
                 <td className="ico">
-                  <span className="material-symbols-outlined">archive</span>
+                  <span className="material-symbols-outlined" onClick={handleClick}>archive</span>
                 </td>
               </tr>
             ))
