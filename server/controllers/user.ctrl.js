@@ -11,17 +11,6 @@ mongoose = require('mongoose')
 mongoose.set('strictQuery', true);
 
 
-// Recuperez tous les utilisateurs
-/* router.route('/').get((req, res, next) => {
-  userSchema.find((error, response)=> {
-    if (error) {
-      return next(error)
-    } else {
-      return res.status(200).json(response)
-    }
-  })
-}) */
-
 
 /*Liste des Actifs */
 router.route('/').get((req, res, next) => {
@@ -51,6 +40,20 @@ router.put('/archiver/:id', (req, res, next) => {
     .then(() => {
       res.status(200).json({
         message: "Utilisateur archivé avec succès !"
+      });
+    })
+    .catch(error => {
+      res.status(400).json({ error });
+    });
+});
+
+/* Désarchiver utilisateur */
+router.put('/desarchiver/:id', (req, res, next) => {
+  const userId = req.params.id;
+  userSchema.findByIdAndUpdate(userId, {etat: true})
+    .then(() => {
+      res.status(200).json({
+        message: "L'Utilisateur vient d'ềtre désarchivé !"
       });
     })
     .catch(error => {
