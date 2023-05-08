@@ -98,7 +98,7 @@ function Admin() {
           />
         </a>
       </div>
-      <h4 className="titreActifArchive">Liste de tous les utilisateurs actifs</h4>
+      <h4 className="titreActifArchive">Liste des utilisateurs actifs</h4>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>
@@ -116,7 +116,7 @@ function Admin() {
             <tr>
               
               <img src={auccuneDonnee} alt="Aucune donnée" />
-              <td colSpan={5} id="dataNot">un utilisateur qui n'existe pas !</td>
+              <td colSpan={5} id="dataNot">un utilisateur inexistant !</td>
             </tr>
             </div>
           ) : (
@@ -134,6 +134,7 @@ function Admin() {
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}
+                      title="Archiver"
                     >
                       archive
                   </span>

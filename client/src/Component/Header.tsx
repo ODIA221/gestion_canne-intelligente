@@ -4,10 +4,6 @@ import serre from '../assets/canne.png'
 import image1 from '../assets/imgHeader.png'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-/* import {useForm } from "react-hook-form";
-import  io from 'socket.io-client';
-import axios from 'axios' */
-
 function Header() {
 
   let [user, etatUser] = useState(true);
@@ -18,8 +14,6 @@ function Header() {
           localStorage.removeItem('token')
           navigate('/')
       }
-
-  
 
   return (
     <div id='entête'>
@@ -34,7 +28,7 @@ function Header() {
            <button id="btnMenuNav"><Link to="/Dashboard/Admin" className='lien'> Tableau de bord  </Link></button>
            <button id="btnMenuNav"><Link to="/Dashboard/Inscription" className='lien'> Ajouter utilisateur </Link></button> 
    
-           <select id="btnMenuNav" onChange={(e) => navigate(e.target.value)}>
+           <select id="btnMenuNav"  onChange={(e) => navigate(e.target.value)}>
              <option>Compte</option>
              <option value='/Dashboard/Modifmdp'>Modification Profile</option>
              <option value='/'>Déconnexion</option>

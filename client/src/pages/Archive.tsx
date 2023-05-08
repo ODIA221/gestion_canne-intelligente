@@ -120,7 +120,7 @@ function Archive() {
             <div id="notData">
             <tr>
               <img  src={auccuneDonnee} alt="Aucune donnée"  />
-              <td colSpan={5} id="dataNot">un utilisateur qui n'existe pas  archivé !</td>
+              <td colSpan={5} id="dataNot">un utilisateur inexist!</td>
             </tr>
             </div>
           ) : (
@@ -130,19 +130,13 @@ function Archive() {
                 <td>{item.id_canne}</td>
                 <td>{item.nom}</td>
                 <td>{item.prenom}</td>
-{/*                 <td className="ico">
-                  <span className="material-symbols-outlined"
-                    onClick={() => handleClick(item._id)}
-                    >
-                    archive
-                  </span>
-                </td> */}
                   <td className="ico">
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}
+                      title="Désarchiver"
                     >
-                      archive
+                      unarchive
                   </span>
                 </td>
               </tr>
