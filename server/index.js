@@ -35,12 +35,6 @@ app.use(
     extended: false,
   }),
 )
-
-
-
-
-
-
   
 // Serve static resources
 app.use('/api', api)
@@ -59,7 +53,7 @@ const servers = require('http').createServer(app)
 // Express error handling
 app.use((req, res, next) => {
   setImmediate(() => {
-    next(new Error('Une Erreur serser est constatée'))
+    next(new Error('Veuillez vérifier vos requettes'))
   })
 })
 

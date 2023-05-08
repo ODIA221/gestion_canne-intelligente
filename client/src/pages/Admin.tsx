@@ -30,7 +30,6 @@ function Admin() {
   }, []);
 
   /* recherhe */
-
   const filteredData = donnee.filter((item: any) =>
     item.id_canne.includes(searchTerm)
   );
@@ -116,8 +115,8 @@ function Admin() {
               <tr key={item.id}>
                 <td>{new Date(item.createdAt).toLocaleDateString("fr-FR")}</td>
                 <td>{item.id_canne}</td>
-                <td>{item.nom}</td>
                 <td>{item.prenom}</td>
+                <td>{item.nom}</td>
                 <td className="ico">
                   <span className="material-symbols-outlined" onClick={handleClick}>archive</span>
                 </td>

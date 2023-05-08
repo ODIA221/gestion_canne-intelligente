@@ -1,3 +1,4 @@
+const { truncateSync } = require('fs');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const uniqueValidator = require('mongoose-unique-validator');
@@ -16,9 +17,9 @@ let userSchema = new Schema({
     nom1: { type: String, required:false },
     adresse: { type: String, required:false },
     telephone: { type: Number, required:false },
-    photo: { type: String, required:false },
 
 }, {timestamps: true},
+
 {
     collection: 'CanneUsers'
 })
@@ -26,3 +27,8 @@ let userSchema = new Schema({
 userSchema.plugin(uniqueValidator, { message: 'Compte déjà existant !' });
 
 module.exports = mongoose.model('CanneUsers', userSchema)
+
+
+
+
+

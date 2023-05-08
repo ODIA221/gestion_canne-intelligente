@@ -71,7 +71,7 @@ router.post('/ajouter', async (req, res, next) => {
     if (lastUser) {
       const canneString = lastUser.id_canne.substring(5); // obtenir le dernier inscrit
       if (!isNaN(canneString)) { // vérifier si le numéro est valide
-        canneNumber = parseInt(canneString) + 1; // incrémenter le numéro d'incription en fonction des ajout
+        canneNumber = parseInt(canneString) + 1; // incrémenter le numéro d'incription en fonction des ajouts
       }
     }
     const id_canne = `canne${canneNumber}`; // Auto générer un id_canne
@@ -82,7 +82,6 @@ router.post('/ajouter', async (req, res, next) => {
       nom: req.body.nom,
       id_canne,
       password: hashedPassword,
-      photo: req.body.photo,
       prenom1: req.body.prenom1,
       nom1: req.body.nom1,
       telephone: req.body.telephone,
@@ -230,6 +229,7 @@ router.patch('/modifierProfile/:id', async(req, res) => {
       res.status(400).json({ message: error.message })
   }
 });
+
  
   
 
