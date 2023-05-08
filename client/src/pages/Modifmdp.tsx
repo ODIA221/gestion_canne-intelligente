@@ -41,11 +41,6 @@ function Modifmdp() {
 
 
   const onSubmit = async (data: any) => {
-
-    console.log(data.nom);
-    console.log(data.prenom);
-
-
     try {
       const response = await axios.patch(`http://localhost:5000/api//modifierProfile/${localStorage.getItem("id")}`, {
         nom: data.nom,
@@ -66,12 +61,6 @@ function Modifmdp() {
           setValue("prenom", prenom);
           setValue("mdpActuel", "");
           setValue("mdpNouveau", "");
-
-
-/*           (document.getElementById("nom") as HTMLInputElement).value; 
-          (document.getElementById("prenom") as HTMLInputElement).value;   
-          (document.getElementById("mdpActuel") as HTMLInputElement).value; 
-          (document.getElementById("mdpNouveau") as HTMLInputElement).value;  */
         }, 3000);
     }else{
 
@@ -79,12 +68,8 @@ function Modifmdp() {
       setValue("mdpActuel", "");
       setValue("mdpNouveau", "");
       setValue("mdpConfirm", "");
-/*       (document.getElementById("mdpActuel") as HTMLInputElement).value=""; 
-      (document.getElementById("mdpNouveau") as HTMLInputElement).value="";
-      (document.getElementById("mdpConfirm") as HTMLInputElement).value=""; */
       setTimeout(() => {
-        window.location.pathname = '/Dashboard';
-        /* setSuccess(false); */
+        window.location.pathname = '/Dashboard/Admin';
           
         }, 3000);
     }
@@ -130,7 +115,7 @@ function Modifmdp() {
                 required: "Champ Obligatoire",
                 
             })}
-            onChange={(event) => setPrenom(event.target.setValue)}
+            /* onChange={(event) => setPrenom(event.target.setValue)} */
           />
           {/* Message d'erreurs */}
           <div>

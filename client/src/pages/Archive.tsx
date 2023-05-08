@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./Style2.css";
 import auccuneDonnee from "../assets/auccuneDonnee.gif";
+import axios from "axios";
 
 
 function Archive() {
     
-  const [donnee, setData] = useState([]);
+  const [donnee, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
+  const [userId, setUserId] = useState("");
   
 
   /* recupération liste des archiver */
@@ -62,7 +64,25 @@ function Archive() {
     
       // Index de fin pour l'affichage des données
       const endIndex = startIndex + itemsPerPage;
-  
+            /* Désararchivage */
+      const handleClick = (userId:String) => {
+        axios
+          .put(`http://localhost:5000/api/desarchiver/${userId}`)
+          .then((response) => {
+            console.log(response.data.message);
+            // Mettre à jour les données pour refléter l'archivage
+            const updatedData = donnee.map((item:any) =>
+              item._id === userId ? { ...item, etat: false } : item
+            );
+            setData(updatedData);
+            window.location.pathname = '/Dashboard/Archive';
+
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
   return (
     <div className="container" style={{ width: "75vw" }}>
       <div className="form-group d-flex">
@@ -110,8 +130,20 @@ function Archive() {
                 <td>{item.id_canne}</td>
                 <td>{item.nom}</td>
                 <td>{item.prenom}</td>
-                <td className="ico">
-                  <span className="material-symbols-outlined">archive</span>
+{/*                 <td className="ico">
+                  <span className="material-symbols-outlined"
+                    onClick={() => handleClick(item._id)}
+                    >
+                    archive
+                  </span>
+                </td> */}
+                  <td className="ico">
+                  <span
+                      className="material-symbols-outlined"
+                      onClick={() => handleClick(item._id)}
+                    >
+                      archive
+                  </span>
                 </td>
               </tr>
             ))

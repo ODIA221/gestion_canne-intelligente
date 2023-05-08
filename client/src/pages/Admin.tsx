@@ -4,7 +4,8 @@ import auccuneDonnee from "../assets/auccuneDonnee.gif";
 import axios from "axios";
 
 function Admin() {
-  const [donnee, setData] = useState([]);
+  /* const [donnee, setData] = useState([]); */
+  const [donnee, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
@@ -59,17 +60,25 @@ function Admin() {
       // Index de fin pour l'affichage des données
       const endIndex = startIndex + itemsPerPage;
 
-      /* archiver */
-      const handleClick = () => {
-        axios.put(`/archiver/${userId}`)
-          .then(response => {
+      /* archivage */
+      const handleClick = (userId:String) => {
+        axios
+          .put(`http://localhost:5000/api/archiver/${userId}`)
+          .then((response) => {
             console.log(response.data.message);
+            // Mettre à jour les données pour refléter l'archivage
+            const updatedData = donnee.map((item:any) =>
+              item._id === userId ? { ...item, etat: false } : item
+            );
+            setData(updatedData);
+            window.location.pathname = '/Dashboard/Admin';
+
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
           });
       };
-  
+      
 
   return (
     <div className="container" style={{ width: "75vw" }}>
@@ -117,9 +126,19 @@ function Admin() {
                 <td>{item.id_canne}</td>
                 <td>{item.prenom}</td>
                 <td>{item.nom}</td>
-                <td className="ico">
+                {/* <td className="ico">
                   <span className="material-symbols-outlined" onClick={handleClick}>archive</span>
+                </td> */
+                }
+                <td className="ico">
+                  <span
+                      className="material-symbols-outlined"
+                      onClick={() => handleClick(item._id)}
+                    >
+                      archive
+                  </span>
                 </td>
+
               </tr>
             ))
           )}

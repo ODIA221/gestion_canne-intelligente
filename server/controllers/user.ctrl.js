@@ -33,30 +33,33 @@ router.route('/listeArches').get((req, res, next) => {
   });
 });
 
-/* Archiver utilisateur */
+/* arhivage */
 router.put('/archiver/:id', (req, res, next) => {
   const userId = req.params.id;
-  userSchema.findByIdAndUpdate(userId, {etat: false})
-    .then(() => {
+  userSchema.findByIdAndUpdate(userId, { etat: false }, { new: true })
+    .then((updatedUser) => {
       res.status(200).json({
-        message: "Utilisateur archivé avec succès !"
+        message: "Utilisateur archivé avec succès !",
+        user: updatedUser,
       });
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(400).json({ error });
     });
 });
 
+
 /* Désarchiver utilisateur */
 router.put('/desarchiver/:id', (req, res, next) => {
   const userId = req.params.id;
-  userSchema.findByIdAndUpdate(userId, {etat: true})
-    .then(() => {
+  userSchema.findByIdAndUpdate(userId, { etat: true }, { new: true })
+    .then((updatedUser) => {
       res.status(200).json({
-        message: "L'Utilisateur vient d'ềtre désarchivé !"
+        message: "Désarchivage réussie !",
+        user: updatedUser,
       });
     })
-    .catch(error => {
+    .catch((error) => {
       res.status(400).json({ error });
     });
 });
