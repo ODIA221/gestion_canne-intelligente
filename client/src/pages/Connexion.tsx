@@ -43,7 +43,7 @@ const connexion = (e:any) =>{
                     localStorage.setItem('token', response?.data?.token)
                     localStorage.setItem('id', response?.data?._id)
                     /* redirection si token est bon */
-                    window.location.pathname = '/Dashboard/Admin';
+                    window.location.pathname = '/Dashbord/Admin';
                     
                 }
             })
@@ -79,8 +79,8 @@ const connexion = (e:any) =>{
             <div id="errClient">
                 {error && <div>{error}</div>}
             </div>
-            <div className="mb-3">
-                <div  className="labelInputConnexion">
+{/*             <div className="mb-3">
+ */}                <div className="labelInputConnexion">
                     <label>
                         Ididentifiant Utilisateur
                     </label>
@@ -99,9 +99,9 @@ const connexion = (e:any) =>{
                     {/* Message d'erreurs */}
                     {errors.id_canne && <small className='err'>{errors?.id_canne?.message?.toString()  }</small>}
                 </div>
-            </div>
-            <div className="mb-3">
-                <div   className="labelInputConnexion">
+{/*             </div>
+ */}{/*             <div className="mb-3">
+ */}                <div className="labelInputConnexion">
                     <label>
                         Mot de passe
                     </label>
@@ -127,8 +127,8 @@ const connexion = (e:any) =>{
                     {/* Message d'erreurs */}
                     {errors.password && <small className='err'>{errors?.password?.message?.toString()}</small>}
                 </div>
-            </div>
-            <button type="submit" id="btnConnexion" onClick={(e) =>connexion(e)}>Connexion</button>
+{/*             </div>
+ */}            <button type="submit" id="btnConnexion" onClick={(e) =>connexion(e)}>Connexion</button>
         </form>
     </body>
   )

@@ -75,7 +75,7 @@ function Archive() {
               item._id === userId ? { ...item, etat: false } : item
             );
             setData(updatedData);
-            window.location.pathname = '/Dashboard/Archive';
+            window.location.pathname = '/Dashbord/Archive';
 
           })
           .catch((error) => {
@@ -93,7 +93,7 @@ function Archive() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {/* lien pour voir la liste des actifs */}
-        <a href="/Dashboard/Admin">
+        <a href="/Dashbord/Admin">
           <img className="ima" 
           src="../../src/assets/desarchi.png" 
           alt="Achivés" 

@@ -71,7 +71,7 @@ function Inscription() {
             (document.getElementById("prenom") as HTMLInputElement).value="";
             (document.getElementById("password") as HTMLInputElement).value="";
             setTimeout(() => {
-              window.location.pathname = '/Dashboard/Admin';
+              window.location.pathname = '/Dashbord/Admin';
            
               }, 3000);
           }
@@ -91,12 +91,11 @@ function Inscription() {
 
     return(
 
-      
       <div className="container row g-3 gap-5" id='borde' >
           <form onSubmit={handleSubmit(onSubmit)}>
           <h5 className='titre'>Ajouter des utilisateurs </h5>
-          <h6 className='titre'>Vous pouvez ajouter les informations du concerné</h6>
-          <div id='errServer'>
+{/*           <h6 className='titre'>Vous pouvez ajouter les informations du concerné</h6>
+ */}          <div id='errServer'>
             {/* capter les messages d'erreurs server */}
             {error && 
               <p id='errMdp'>
@@ -111,10 +110,13 @@ function Inscription() {
             )}
           </div>
             <div className="col" id='form'>
+              <div className='labelInputConnexion'>
               <label>
                   Prenom
                   <span className='text-danger'>*</span>
               </label>
+              </div>
+             
               <input 
                   type="text" 
                   className="form-control" 
@@ -129,12 +131,15 @@ function Inscription() {
               />
               {/* Message d'erreurs */}
               <div>
-                {errors.prenom && <small className='err'>{errors?.prenom?.message?.toString() }</small>}
+                {errors.prenom && <small className='err text-danger'>{errors?.prenom?.message?.toString() }</small>}
               </div>
+              <div className='labelInputConnexion'>
               <label>
                   Nom
                   <span className='text-danger'>*</span>
               </label>
+              </div>
+              
               <input 
                   type="text" 
                   className="form-control" 
@@ -149,12 +154,15 @@ function Inscription() {
               />
               {/* Message d'erreurs */}
               <div>
-                {errors.nom && <small className='err'>{errors?.nom?.message?.toString() }</small>}
+                {errors.nom && <small className='err text-danger'>{errors?.nom?.message?.toString() }</small>}
               </div>
+              <div className='labelInputConnexion'>
               <label>
                   Mot de passe
                   <span className='text-danger'>*</span>
               </label>
+              </div>
+              
               <input 
                   type="password" 
                   className="form-control" 
@@ -169,12 +177,15 @@ function Inscription() {
               />
               {/* Message d'erreurs */}
               <div>
-                {errors.password && <small className='err'>{errors?.password?.message?.toString() }</small>}
+                {errors.password && <small className='err text-danger'>{errors?.password?.message?.toString() }</small>}
               </div>
+              <div className='labelInputConnexion'>
               <label>
                   Confirmation mot de passe
                   <span className='text-danger'>*</span>
               </label>
+              </div>
+             
               <input 
                   type="password" 
                   className="form-control" 
@@ -195,11 +206,11 @@ function Inscription() {
               />
               {/* Message d'erreurs */}
               <div>
-                {errors.mdpConfirm && <small className='err'>{errors?.mdpConfirm?.message?.toString() }</small>}
+                {errors.mdpConfirm && <small className='err text-danger'>{errors?.mdpConfirm?.message?.toString() }</small>}
               </div>
             </div>
 
-            <div className="col" id='form'>
+          {/*   <div className="col" id='form'>
               <label>
                   Prenom 
               </label>
@@ -236,18 +247,18 @@ function Inscription() {
                   placeholder="" 
                   aria-label=""
                   id='telephone'
-/*                   {...register("telephone", {
+                   {...register("telephone", {
                     pattern:{
                         value: /^(221|00221|\+221)?(77|78|75|70|76)[0-9]{7}+$/i,
                         message: "Format du telephone incorrect",
                     } 
-                })} */
+                })} 
               />
-             {/*  <div>
+         <div>
                 {errors.telephone && <small className='err'>{errors?.telephone?.message?.toString() }</small>}
-              </div> */}
-            </div>
-            <button type="submit" id='butins'>Enregistrer</button>  
+              </div> 
+            </div> */}
+            <button type="submit" id='butins'>Ajouter</button>  
          </form>    
         </div>
          

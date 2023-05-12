@@ -1,13 +1,99 @@
-import React from 'react'
+import React from 'react';
+import  io from 'socket.io-client';
+import { useState, useEffect } from 'react'
+
+
+const [humsol, setHumSol] = useState(0)
+const [seconde, setSeconde] = useState('')
+  const [minute, setMinute] = useState('')
+  const [heure, setHeure] = useState('')
+  const [mois, setMois] = useState('')
+  const [jour, setJour] = useState('')
+  const [annee, setAnnee] = useState('')
+  const [periode, setPeriode] = useState('')
+
+
+
 
 const TB = () => {
+
+
+    useEffect(() => {
+        if (heure === "16" && minute === "49" && seconde === "00") {
+        fetch("http://localhost:5000/api/envoi", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+              jour: periode,
+              humsol:  humsol,
+            }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+             
+            });
+          } 
+      }, []);
+  
+    setInterval(() => repeter(), 1000);
+  
+    const repeter = () => {
+  
+  
+      let currentDate = new Date().getDate() 
+     + '/0' +(parseInt(String(new Date().getMonth())) +1) + '/0'+ new Date().getFullYear()
+  
+  
+      let date = new Date();
+      let seconde = date.getSeconds();
+      let minute = date.getMinutes();
+      let heure = date.getHours();
+      let mois = date.getMonth() + 1;
+      let annee = date.getFullYear();
+      let jour = new Date().getDate() 
+      let moisStr = mois.toString()
+      let jourStr = jour.toString()
+  
+      if (mois < 10) {
+        moisStr = "0"+mois;
+      }
+      if (jour < 10) {
+        jourStr = "0"+jour;
+      }
+  
+      setSeconde(seconde.toString());
+      setMinute(minute.toString());
+      setHeure(heure.toString());
+      setAnnee(annee.toString());
+      setMois(moisStr);
+      setJour(jourStr);
+  
+      setPeriode(currentDate.toString())
+  
+  
+    };
+  
+
+
+    const socket = io('ws://localhost:5000');
+    socket.on('data', (data) => {
+      setHumSol(data.humsol)
+        
+    })
+    
+
   return (
     <div className='container w-75 h-75 d-flex me-0 gap-2 justify-content-center'>
     <div id='dashboardSousContainer' className=' border w-50 p-3 shadow p-3 mb-5 bg-body rounded'>
         
         <div  className='border p-2 mt-3'>
             <h5>Rythme cardiaque</h5>
-            <h6>80 bat/min</h6>
+            <h6>{humsol}</h6>
         </div>
         <div  className='border p-2'>
             <h5>Alerter</h5>

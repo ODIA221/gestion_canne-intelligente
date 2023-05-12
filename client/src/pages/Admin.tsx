@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Style2.css";
+import "./Style2.css"
 import auccuneDonnee from "../assets/auccuneDonnee.gif";
 import axios from "axios";
 
@@ -71,7 +71,7 @@ function Admin() {
               item._id === userId ? { ...item, etat: false } : item
             );
             setData(updatedData);
-            window.location.pathname = '/Dashboard/Admin';
+            window.location.pathname = '/Dashbord/Admin';
 
           })
           .catch((error) => {
@@ -89,7 +89,7 @@ function Admin() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {/* lien pour voir la liste des archivés */}
-        <a href="/Dashboard/Archive">
+        <a href="/Dashbord/Archive">
           <img
             className="ima"
             src="../../src/assets/archi.png"

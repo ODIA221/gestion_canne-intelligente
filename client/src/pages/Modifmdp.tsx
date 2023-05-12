@@ -69,7 +69,7 @@ function Modifmdp() {
       setValue("mdpNouveau", "");
       setValue("mdpConfirm", "");
       setTimeout(() => {
-        window.location.pathname = '/Dashboard/Admin';
+        window.location.pathname = '/Dashbord/Admin';
           
         }, 3000);
     }
@@ -101,10 +101,13 @@ function Modifmdp() {
         )}
       </div>
       <div className="col" id='form2'>
-          <label>
+        <div className='labelInputConnexion'>
+        <label>
               Prenom
               <span className='text-danger'>*</span>
             </label>
+        </div>
+          
           <input 
               className="form-control" 
               type="text"
@@ -121,10 +124,13 @@ function Modifmdp() {
           <div>
             {errors.prenom && <small className='err'>{errors?.prenom?.message?.toString() }</small>}
           </div>
+          <div className='labelInputConnexion'>
           <label>
               Nom
               <span className='text-danger'>*</span>
           </label>
+          </div>
+          
           <input 
               className="form-control" 
               type="text"
@@ -140,10 +146,13 @@ function Modifmdp() {
           <div>
             {errors.nom && <small className='err'>{errors?.nom?.message?.toString() }</small>}
           </div>
+          <div className='labelInputConnexion'>
           <label>
               Ancien mot de passe
               <span className='text-danger'>*</span>
           </label>
+          </div>
+          
           <input 
               className="form-control" 
               type="password"
@@ -168,10 +177,13 @@ function Modifmdp() {
           <div>
             {errors.mdpActuel && <small className='err'>{errors?.mdpActuel?.message?.toString() }</small>}
           </div>
+          <div className='labelInputConnexion'>
           <label>
               Mot de passe
               <span className='text-danger'>*</span>
           </label>
+          </div>
+          
           <input 
               className="form-control" 
               type="password"
@@ -196,10 +208,13 @@ function Modifmdp() {
           />
           {/* Message d'erreurs */}
           {errors.mdpNouveau && <small className='err'>{errors?.mdpNouveau?.message?.toString() }</small>}
+          <div className='labelInputConnexion'>
           <label>
               Confirmation mot de passe
               <span className='text-danger'>*</span>
           </label>
+          </div>
+         
           <input 
               className="form-control"
               placeholder="........."
@@ -221,8 +236,9 @@ function Modifmdp() {
           <div>
             {errors.mdpConfirm && <small className='err'>{errors?.mdpConfirm?.message?.toString() }</small>}
           </div>
+          <button type="submit" id='butins'>Modifié</button>  
+
       </div>
-      <button type="submit" id='butins'>Modifier</button>
 
     </form>
   );

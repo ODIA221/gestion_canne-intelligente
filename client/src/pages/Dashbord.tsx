@@ -3,6 +3,7 @@ import {Outlet  } from "react-router-dom";
 import Header from '../Component/Header';
 import "./Style2.css";
 import Sidebar from '../Component/Sidebar';
+
 const Dashbord = () => {
   let [user, etatUser] = useState(false);
   return (
