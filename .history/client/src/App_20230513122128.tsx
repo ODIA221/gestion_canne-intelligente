@@ -1,7 +1,7 @@
 
 import './App.css'
-/* import Header from './Component/Header'
-import Sidebar from './Component/Sidebar' */
+import Header from './Component/Header'
+import Sidebar from './Component/Sidebar'
 import Inscription from './pages/Inscription'
 import Admin from './pages/Admin'
 import Archive from './pages/Archive'
@@ -12,8 +12,8 @@ import Donneconcerne from './pages/Donneconcerne'
 import Dashbord from './pages/Dashbord'
 import { Route, Routes } from 'react-router-dom'
 import Connexion from './pages/Connexion'
-/* import TB from './pages/TB'
- */
+import TB from './pages/TB'
+
 function App() {
 
 
