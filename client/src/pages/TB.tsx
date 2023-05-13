@@ -1,7 +1,14 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import io from 'socket.io-client'
 const TB = () => {
-  return (
+/////////////////////////// SOCKET ///////////////
+    const socket = io('ws://localhost:5000')
+   
+        function turON(){
+         socket.emit('message', { message: '1' })
+         }
+
+    return (
     <div className='container w-75 h-75 d-flex me-0 gap-2 justify-content-center'>
     <div id='dashboardSousContainer' className=' border w-50 p-3 shadow p-3 mb-5 bg-body rounded'>
         
@@ -11,7 +18,7 @@ const TB = () => {
         </div>
         <div  className='border p-2'>
             <h5>Alerter</h5>
-            <button className='btn btn-danger'> Envoie alert</button>
+            <button className='btn btn-danger' onClick={turON}> Envoie alert</button>
         </div>
         <div   className='border p-2'>
             <h5>État</h5>

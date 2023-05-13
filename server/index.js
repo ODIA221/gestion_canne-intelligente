@@ -72,9 +72,43 @@ app.use(function (err, req, res, next) {
 })
 
 
- 
-   
+ ////////////////////// 2 Socket //////////////
 
+
+io = require('socket.io')(servers,
+  {
+      cors:
+      {
+          origin: "*",
+          methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+          credentials: false
+      }
+  });
+   
+  const SerialPort = require('serialport');
+  const port2 = new SerialPort('/dev/ttyACM0', { baudRate: 9600} )
+  const { ReadlineParser } = require('@serialport/parser-readline');
+  const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
+  
+  io.on('connection', (socket) => {
+    
+    // Écouter l'événement 'message'
+    socket.on('message', (data) => {
+      console.log(`Données reçues : ${JSON.stringify(data.message)}`);
+      port2.write(data.message);
+    });
+  });
+
+
+    parser.on("data", (data) => {
+    let tempon = data.split('/')
+    let obstacle = tempon[0]
+     console.log(tempon[0]);
+  });
+  
+
+
+  
   
 
  
