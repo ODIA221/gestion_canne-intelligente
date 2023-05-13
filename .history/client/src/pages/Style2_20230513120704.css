@@ -44,7 +44,7 @@
     color: white;
 }
 .ico{
-    color: red;
+    color: green;
     cursor: pointer;
 }
 .ima{
@@ -52,10 +52,7 @@ margin-left: 620px;
 width: 30px;
 height: 30px;
 }
-.desar{
-    color: green;
-    cursor: pointer;
-}
+
 
 #borde{
     width: 60%;

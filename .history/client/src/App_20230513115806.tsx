@@ -12,7 +12,6 @@ import Donneconcerne from './pages/Donneconcerne'
 import Dashbord from './pages/Dashbord'
 import { Route, Routes } from 'react-router-dom'
 import Connexion from './pages/Connexion'
-import TB from './pages/TB'
 
 function App() {
 
@@ -30,8 +29,8 @@ function App() {
               <Route path='Sante' element={<Sante/>}/>
               <Route path='Modifmdp' element={<Modifmdp/>}/>
               <Route path='Donneconcerne' element={<Donneconcerne/>}/>
-{/*               <Route path='TB' element={<TB/>}/>
- */}
+              <Route path='Donneconcerne' element={<Donneconcerne/>}/>
+
            </Route>
 
     </Routes>

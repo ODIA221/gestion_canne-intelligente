@@ -130,7 +130,7 @@ function Archive() {
                 <td>{item.id_canne}</td>
                 <td>{item.nom}</td>
                 <td>{item.prenom}</td>
-                  <td className="desar">
+                  <td className="ico">
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}

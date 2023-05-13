@@ -53,8 +53,8 @@ width: 30px;
 height: 30px;
 }
 .desar{
-    color: green;
-    cursor: pointer;
+    background-color: #377a7c;
+    color: white;
 }
 
 #borde{

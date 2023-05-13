@@ -30,8 +30,8 @@ function App() {
               <Route path='Sante' element={<Sante/>}/>
               <Route path='Modifmdp' element={<Modifmdp/>}/>
               <Route path='Donneconcerne' element={<Donneconcerne/>}/>
-{/*               <Route path='TB' element={<TB/>}/>
- */}
+              <Route path='TB' element={<TB/>}/>
+
            </Route>
 
     </Routes>

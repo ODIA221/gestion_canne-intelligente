@@ -130,7 +130,7 @@ function Archive() {
                 <td>{item.id_canne}</td>
                 <td>{item.nom}</td>
                 <td>{item.prenom}</td>
-                  <td className="desar">
+                  <td className="ico">
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}
@@ -147,7 +147,7 @@ function Archive() {
       {/* pagination */}
       <div className="containerPagination">
         {currentPage > 1 && (
-          <button onClick={handlePrevPage} className="pagination">Précédent</button>
+          <button onClick={handlePrevPage} className="pagination fixed-bottom">Précédent</button>
         )}
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
