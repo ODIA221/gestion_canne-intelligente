@@ -8,9 +8,8 @@ const api = require('./controllers/user.ctrl')
 
 
 /* connexion bd */
-const url = mongoose  /* mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.1 */
-  // .connect("mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente ")/* mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente */
-  .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")/* mongodb+srv://odia221:odia221@cluster0.hvk2qpn.mongodb.net/canne_intelligente */
+const url = mongoose  
+  .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")
   .then((x) => {
     console.log(`Vous êtes connecté à la base de donnée : "${x.connections[0].name}"`)
   })
@@ -36,12 +35,6 @@ app.use(
     extended: false,
   }),
 )
-
-
-
-
-
-
   
 // Serve static resources
 app.use('/api', api)
@@ -60,7 +53,7 @@ const servers = require('http').createServer(app)
 // Express error handling
 app.use((req, res, next) => {
   setImmediate(() => {
-    next(new Error('Une Erreur serser est constatée'))
+    next(new Error('Veuillez vérifier vos requettes'))
   })
 })
 
@@ -69,42 +62,49 @@ app.use(function (err, req, res, next) {
   if (!err.statusCode) err.statusCode = 500
   res.status(err.statusCode).send(err.message)
 
+  io = require('socket.io')(servers,
+    {
+        cors:
+        {
+            origin: "*",
+            methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+            credentials: false
+        }
+    });
 })
+  
+    const SerialPort = require('serialport');
+    const port2 = new SerialPort('/dev/ttyACM0', { baudRate: 9600} )
+    const { ReadlineParser } = require('@serialport/parser-readline');
+    const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
+  
+  
+  //   parser.on("data", (data) => {
+  //  var humsol = data.split("/");
+  
+  //       io.emit("data", {humsol: humsol});
+  //   });
 
 
  ////////////////////// 2 Socket //////////////
 
 
-io = require('socket.io')(servers,
-  {
-      cors:
-      {
-          origin: "*",
-          methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
-          credentials: false
-      }
-  });
-   
-  const SerialPort = require('serialport');
-  const port2 = new SerialPort('/dev/ttyACM0', { baudRate: 9600} )
-  const { ReadlineParser } = require('@serialport/parser-readline');
-  const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
-  
-  io.on('connection', (socket) => {
+
+  // io.on('connection', (socket) => {
     
-    // Écouter l'événement 'message'
-    socket.on('message', (data) => {
-      console.log(`Données reçues : ${JSON.stringify(data.message)}`);
-      port2.write(data.message);
-    });
-  });
+  //   // Écouter l'événement 'message'
+  //   socket.on('message', (data) => {
+  //     console.log(`Données reçues : ${JSON.stringify(data.message)}`);
+  //     port2.write(data.message);
+  //   });
+  // });
 
 
-    parser.on("data", (data) => {
-    let tempon = data.split('/')
-    let obstacle = tempon[0]
-     console.log(tempon[0]);
-  });
+  //   parser.on("data", (data) => {
+  //   let tempon = data.split('/')
+  //   let obstacle = tempon[0]
+  //    console.log(tempon[0]);
+  // });
   
 
 

@@ -30,6 +30,7 @@ color: white;
       color: white;
       padding: 1% 4% 1% 4% ;
       border: none;
+      cursor: pointer;
     }
     #btnMenuNav:hover{
       background-color: #00828d;
@@ -80,8 +81,11 @@ color: white;
   color: black;
   
 }
+.lien:hover{
+  text-decoration: none;
+  color: white; 
+}
 .lien{
   text-decoration: none;
-  color: white;
-  
+  color: white; 
 }
