@@ -9,7 +9,7 @@ function Deplacement(){
 
     return(
         <div className="histo">
-        <h3>Historique des Déplacements</h3>
+      <h3>Historique des Déplacements</h3>
         <div className="form-group d-flex" >
         <label htmlFor="date"></label>
         <input

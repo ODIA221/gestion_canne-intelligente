@@ -5,14 +5,8 @@
     justify-content: center;
     gap: 13%;
    }
-   #datasante{
-    display: flex;
-    justify-content: center;
-   }
-   #sante{
-    margin-bottom: 350px;
-    margin-right: 150px;
-
+   .container{
+    
    }
    #notData{
     display: flex;

@@ -3,7 +3,7 @@ import  io from 'socket.io-client';
 import { useState, useEffect } from 'react'
 
 
-const [pression, setPression] = useState(0)
+const [pression, setpression] = useState(0)
 const [seconde, setSeconde] = useState('')
   const [minute, setMinute] = useState('')
   const [heure, setHeure] = useState('')
@@ -82,7 +82,7 @@ const TB = () => {
 
     const socket = io('ws://localhost:5000');
     socket.on('data', (data) => {
-      setPression(data.pression)
+      setpression(data.pression)
         
     })
     

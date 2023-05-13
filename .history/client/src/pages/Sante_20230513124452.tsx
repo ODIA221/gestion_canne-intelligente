@@ -9,6 +9,8 @@ function Sante(){
   const [active2, setActive2] = useState(false);
   const [rechercher, setRecherche] = useState("");
   const [cacher2, setCacher2] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(7);
 
 
   useEffect(() => {
@@ -34,6 +36,30 @@ function Sante(){
     const valeur = event.target.value;
     setRecherche(valeur);
   };
+  /* Pagination */
+      // Calcul du nombre total de pages
+      const pageCount = Math.ceil(donnee.length / itemsPerPage);
+  
+      // Fonction pour passer à la page suivante
+      const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+      };
+    
+      // Fonction pour passer à la page précédente
+      const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+      };
+    
+      // Fonction pour changer de page
+      const handlePageChange = (pageNumber :any) => {
+        setCurrentPage(pageNumber);
+      };
+    
+      // Index de départ pour l'affichage des données
+      const startIndex = (currentPage - 1) * itemsPerPage;
+    
+      // Index de fin pour l'affichage des données
+      const endIndex = startIndex + itemsPerPage;
 
   const handlePagination = (page: number) => {
     if (page === 1) {
@@ -64,8 +90,8 @@ function Sante(){
 
   const dataAffichee = dataFiltree.slice(start, end);
   return (
-<div className="container" id="datasante" style={{ width: "65vw"}}>
-        <div className="form-group" id="sante">
+    <div className="container">
+      <div className="form-group">
         <label htmlFor="date"></label>
         <input
           onChange={handleSearch}
@@ -76,10 +102,10 @@ function Sante(){
         />
       </div>
       <table className="table border border-dark mt-4">
-        <thead className="the">
+        <thead>
           <tr>
             <th>Jours</th>
-            <th>Données (bat/min)</th>
+            <th>Données (°C)</th>
             
           </tr>
           </thead>
@@ -93,7 +119,7 @@ function Sante(){
             ))}
             </tbody>
             </table>
-           {/*  <nav aria-label="Page navigation example">
+            {/* <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
               <li className={`page-item ${active1 ? "active" : ""}`}>
                 <a className="page-link" href="#" onClick={() => handlePagination(1)}>
@@ -107,6 +133,14 @@ function Sante(){
               </li>
             </ul>
           </nav> */}
+           <div className="containerPagination">
+        {currentPage > 1 && (
+          <button onClick={handlePrevPage} className="pagination">Précédent</button>
+        )}
+        {currentPage < pageCount && (
+          <button onClick={handleNextPage} className="pagination">Suivant</button>
+        )}
+      </div>
 
       </div>
       );

@@ -64,7 +64,7 @@ function Sante(){
 
   const dataAffichee = dataFiltree.slice(start, end);
   return (
-<div className="container" id="datasante" style={{ width: "65vw"}}>
+<div className="container" style={{ width: "65vw"}}>
         <div className="form-group" id="sante">
         <label htmlFor="date"></label>
         <input

@@ -76,7 +76,7 @@ function Sante(){
         />
       </div>
       <table className="table border border-dark mt-4">
-        <thead className="the">
+        <thead className="">
           <tr>
             <th>Jours</th>
             <th>Données (bat/min)</th>

@@ -76,23 +76,27 @@ function Sante(){
         />
       </div>
       <table className="table border border-dark mt-4">
-        <thead className="the">
-          <tr>
-            <th>Jours</th>
-            <th>Données (bat/min)</th>
-            
-          </tr>
+          <thead className="the">
+            <tr>
+              <th>Dates | Heures</th>
+              <th>09H</th>
+              <th>13H</th>
+              <th>18H</th>
+
+            </tr>
           </thead>
           <tbody>
-            {dataAffichee.map((item) => (
-            <tr key={item.id}>
-              <td>{new Date(item.dateInsertion).toLocaleDateString()}</td>
-              <td>{item.pression}</td>
-             
+            {/* {dataAffichee.map((item) => ( */}
+            <tr>
+              <td>13/28/2023</td>
+              <td>Dakar, mermoz</td>
+              <td>Dakar, mermoz</td>
+              <td>Dakar, mermoz</td>
+
             </tr>
-            ))}
-            </tbody>
-            </table>
+            {/*             ))}
+   */}            </tbody>
+        </table>
            {/*  <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
               <li className={`page-item ${active1 ? "active" : ""}`}>
