@@ -65,6 +65,7 @@ height: 30px;
 /*     margin-left: 20%;
  */    display: flex;
     justify-content: center;
+    position: fixed;
     }
 #butins{
     color: #377a7c;

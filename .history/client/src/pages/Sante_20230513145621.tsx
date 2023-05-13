@@ -54,11 +54,11 @@ function Sante(){
       return true;
     } else {
       const dateSelectionnee = new Date(rechercher);
-      /* const dateItem = new Date(item.dateInsertion);
-      return (
+/*       const dateItem = new Date(item.dateInsertion);
+ */      return (
         dateSelectionnee.toDateString() === dateItem.toDateString() ||
         dateSelectionnee.toISOString() === dateItem.toISOString()
-      ); */
+      );
     }
   });
 

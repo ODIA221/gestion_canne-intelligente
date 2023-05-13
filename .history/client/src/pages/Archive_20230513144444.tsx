@@ -145,15 +145,19 @@ function Archive() {
             </tbody>      
       </table>
       {/* pagination */}
-      <div className="containerPagination gap-5">
+      <div className="g">
+      <div className="containerPagination ap-5">
         {currentPage > 1 && (
           <button onClick={handlePrevPage} className="pagination">Précédent</button>
         )}
+        <div>
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
         </div>
       </div>
+      </div>
+    </div>
   );
 }
 

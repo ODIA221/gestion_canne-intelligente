@@ -54,11 +54,11 @@ function Sante(){
       return true;
     } else {
       const dateSelectionnee = new Date(rechercher);
-      /* const dateItem = new Date(item.dateInsertion);
+      const dateItem = new Date(item.dateInsertion);
       return (
         dateSelectionnee.toDateString() === dateItem.toDateString() ||
         dateSelectionnee.toISOString() === dateItem.toISOString()
-      ); */
+      );
     }
   });
 
@@ -84,13 +84,13 @@ function Sante(){
           </tr>
           </thead>
           <tbody>
-           {/*  {dataAffichee.map((item) => (
+            {dataAffichee.map((item) => (
             <tr key={item.id}>
               <td>{new Date(item.dateInsertion).toLocaleDateString()}</td>
               <td>{item.setPression}</td>
              
             </tr>
-            ))} */}
+            ))}
             </tbody>
             </table>
             <nav aria-label="Page navigation example">
