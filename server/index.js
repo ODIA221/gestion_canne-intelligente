@@ -57,7 +57,7 @@ app.use((req, res, next) => {
   })
 })
 
-app.use(function (err, req, res, next) {
+/* app.use(function (err, req, res, next) {
   console.error(err.message)
   if (!err.statusCode) err.statusCode = 500
   res.status(err.statusCode).send(err.message)
@@ -77,7 +77,7 @@ app.use(function (err, req, res, next) {
     const port2 = new SerialPort('/dev/ttyACM0', { baudRate: 9600} )
     const { ReadlineParser } = require('@serialport/parser-readline');
     const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
-  
+   */
   
   //   parser.on("data", (data) => {
   //  var humsol = data.split("/");
