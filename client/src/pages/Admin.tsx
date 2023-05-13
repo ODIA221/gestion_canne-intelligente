@@ -1,15 +1,34 @@
-import React, { useState, useEffect } from "react";
-import "./Style2.css"
+import React, { useState, useEffect, useRef } from "react";
+import "./Style2.css";
 import auccuneDonnee from "../assets/auccuneDonnee.gif";
 import axios from "axios";
 
 function Admin() {
-  /* const [donnee, setData] = useState([]); */
   const [donnee, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [userId, setUserId] = useState("");
+
+
+
+
+  /* hooks msg confirmation */
+  const [dialog, setDialog] = useState({
+    message: "",
+    isLoading: false,
+    nameProduct: ""
+  });
+
+  const idProductRef = useRef<string | null>(null);
+
+  const handleDialog = (message: string, isLoading: boolean, nameProduct: string) => {
+    setDialog({
+      message,
+      isLoading,
+      nameProduct
+    });
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/api/", {
@@ -17,67 +36,70 @@ function Admin() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
+        "Access-Control-Allow-Origin": "*"
+      }
     })
       .then((res) => res.json())
       .then((res) => {
         const donneeAvecDate = res.map((item: any) => ({
           ...item,
-          dateInsertion: Date.now(),
+          dateInsertion: Date.now()
         }));
         setData(donneeAvecDate);
       });
   }, []);
 
-  /* recherhe */
   const filteredData = donnee.filter((item: any) =>
     item.id_canne.includes(searchTerm)
   );
 
-  /* Pagination */
-      // Calcul du nombre total de pages
-      const pageCount = Math.ceil(donnee.length / itemsPerPage);
-  
-      // Fonction pour passer à la page suivante
-      const handleNextPage = () => {
-        setCurrentPage(currentPage + 1);
-      };
-    
-      // Fonction pour passer à la page précédente
-      const handlePrevPage = () => {
-        setCurrentPage(currentPage - 1);
-      };
-    
-      // Fonction pour changer de page
-      const handlePageChange = (pageNumber :any) => {
-        setCurrentPage(pageNumber);
-      };
-    
-      // Index de départ pour l'affichage des données
-      const startIndex = (currentPage - 1) * itemsPerPage;
-    
-      // Index de fin pour l'affichage des données
-      const endIndex = startIndex + itemsPerPage;
+  const pageCount = Math.ceil(donnee.length / itemsPerPage);
 
-      /* archivage */
-      const handleClick = (userId:String) => {
-        axios
-          .put(`http://localhost:5000/api/archiver/${userId}`)
-          .then((response) => {
-            console.log(response.data.message);
-            // Mettre à jour les données pour refléter l'archivage
-            const updatedData = donnee.map((item:any) =>
-              item._id === userId ? { ...item, etat: false } : item
-            );
-            setData(updatedData);
-            window.location.pathname = '/Dashbord/Admin';
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handlePageChange = (pageNumber: any) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+
+  const endIndex = startIndex + itemsPerPage;
+
+
+  /* popup confirmation désarchiver */
+  const handleClick = (userId: string) => {
+    idProductRef.current = userId;
+    handleDialog("Voulez-vous vraiment désarchiver cette utilisateur ?", false, "", 
+    );
+  };
+
+  const handleConfirmation = (choose: boolean) => {
+    if (choose && idProductRef.current !== null) {
+      axios
+        .put(`http://localhost:5000/api/archiver/${idProductRef.current}`)
+        .then((response) => {
+          console.log(response.data.message);
+          const updatedData = donnee.map((item: any) =>
+            item._id === idProductRef.current ? { ...item, etat: false } : item
+          );
+          setData(updatedData);
+          window.location.pathname = "/Dashbord/Admin";
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    handleDialog("", false, "");
+  };
+
+
+
       
 
   return (
@@ -126,10 +148,6 @@ function Admin() {
                 <td>{item.id_canne}</td>
                 <td>{item.prenom}</td>
                 <td>{item.nom}</td>
-                {/* <td className="ico">
-                  <span className="material-symbols-outlined" onClick={handleClick}>archive</span>
-                </td> */
-                }
                 <td className="ico">
                   <span
                       className="material-symbols-outlined"
@@ -154,8 +172,89 @@ function Admin() {
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
       </div>
+
+          {/* Pop-up  de confirmation désarchivage*/}
+    {dialog.message && (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          background: "#d3eaeb",
+          padding: "20px",
+          borderRadius: "10px",
+          width: "30%",
+          height: "30%"
+
+        }}
+        >
+          <div className="dialog-content">
+            <p
+              style={{
+                fontSize: "20px",
+                fontWeight: "bold",
+                color:"black"
+              }}
+            >
+              {dialog.message}
+            </p>
+            <div className="dialog-buttons">
+              <button
+                onClick={() => handleConfirmation(true)}
+                disabled={dialog.isLoading}
+                style={{
+                  background: "red",
+                  color: "white",
+                  padding: "10px",
+                  marginRight: "4px",
+                  border: "none",
+                  cursor: "pointer"
+                }}
+              >
+                <p
+                  style={{
+                    fontWeight:"bold"
+                  }}
+                >
+                  Oui
+                </p>
+              </button>
+              <button
+                onClick={() => handleConfirmation(false)}
+                disabled={dialog.isLoading}
+                style={{
+                  background: "green",
+                  color: "white",
+                  padding: "10px",
+                  marginLeft: "4px",
+                  border: "none",
+                  cursor: "pointer"
+                }}
+              >
+                <p
+                  style={{
+                    fontWeight:"bold"
+                  }}
+                >
+                  Non
+                </p>
+              </button>
+          </div>
+        </div>
+      </div>
+    )}
     </div>
   );
 }
 
 export default Admin;
+
+
+
+
+ 
