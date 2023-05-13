@@ -5,15 +5,7 @@
     justify-content: center;
     gap: 13%;
    }
-   #datasante{
-    display: flex;
-    justify-content: center;
-   }
-   #sante{
-    margin-bottom: 350px;
-    margin-right: 150px;
-
-   }
+   
    #notData{
     display: flex;
     flex-wrap: wrap;
@@ -66,13 +58,13 @@ height: 30px;
 }
 
 #borde{
-    width: 50%;
+    width: 60%;
     border-radius: 10px;
     box-shadow:  1px 1px 12px 1px #377a7c;
     background-color: #377a7c;
-/*     margin-left: 20%;
- */    display: flex;
-    justify-content: center;
+    margin-left: 20%;
+    display: flex;
+    j
     }
 #butins{
     color: #377a7c;

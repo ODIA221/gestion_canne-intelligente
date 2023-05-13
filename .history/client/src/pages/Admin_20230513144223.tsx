@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./Style2.css";
+import "./Style2.css"
 import auccuneDonnee from "../assets/auccuneDonnee.gif";
 import axios from "axios";
 
-
-function Archive() {
-    
+function Admin() {
+  /* const [donnee, setData] = useState([]); */
   const [donnee, setData] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [userId, setUserId] = useState("");
-  
-
-  /* recupération liste des archiver */
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/listeArches", {
+    fetch("http://localhost:5000/api/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +22,7 @@ function Archive() {
     })
       .then((res) => res.json())
       .then((res) => {
-        const donneeAvecDate = res.map((item:any) => ({
+        const donneeAvecDate = res.map((item: any) => ({
           ...item,
           dateInsertion: Date.now(),
         }));
@@ -35,7 +31,6 @@ function Archive() {
   }, []);
 
   /* recherhe */
-
   const filteredData = donnee.filter((item: any) =>
     item.id_canne.includes(searchTerm)
   );
@@ -64,10 +59,11 @@ function Archive() {
     
       // Index de fin pour l'affichage des données
       const endIndex = startIndex + itemsPerPage;
-            /* Désararchivage */
+
+      /* archivage */
       const handleClick = (userId:String) => {
         axios
-          .put(`http://localhost:5000/api/desarchiver/${userId}`)
+          .put(`http://localhost:5000/api/archiver/${userId}`)
           .then((response) => {
             console.log(response.data.message);
             // Mettre à jour les données pour refléter l'archivage
@@ -75,33 +71,34 @@ function Archive() {
               item._id === userId ? { ...item, etat: false } : item
             );
             setData(updatedData);
-            window.location.pathname = '/Dashbord/Archive';
+            window.location.pathname = '/Dashbord/Admin';
 
           })
           .catch((error) => {
             console.error(error);
           });
       };
+      
 
   return (
     <div className="container" style={{ width: "75vw" }}>
       <div className="form-group d-flex">
-        {/* recherche */}
-      <input
+        <input
           className="rech"
-          placeholder=" recherche par ID canne..."
+          placeholder=" recherche par Id canne"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        {/* lien pour voir la liste des actifs */}
-        <a href="/Dashbord/Admin">
-          <img className="ima" 
-          src="../../src/assets/desarchi.png" 
-          alt="Achivés" 
-          title="liste des actifs"
+        {/* lien pour voir la liste des archivés */}
+        <a href="/Dashbord/Archive">
+          <img
+            className="ima"
+            src="../../src/assets/archi.png"
+            alt="Achivés"
+            title="liste des archivés"
           />
         </a>
       </div>
-      <h4  className="titreActifArchive">Liste des utilisateurs archivés</h4>
+      <h4 className="titreActifArchive">Liste des utilisateurs actifs</h4>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>
@@ -112,15 +109,14 @@ function Archive() {
             <th>Action</th>
           </tr>
         </thead>
-
-
-          <tbody>
-             
+        <tbody>
+          
           {filteredData.length === 0 ? (
             <div id="notData">
             <tr>
-              <img  src={auccuneDonnee} alt="Aucune donnée"  />
-              <td colSpan={5} id="dataNot">un utilisateur inexist!</td>
+              
+              <img src={auccuneDonnee} alt="Aucune donnée" />
+              <td colSpan={5} id="dataNot">un utilisateur inexistant !</td>
             </tr>
             </div>
           ) : (
@@ -128,35 +124,40 @@ function Archive() {
               <tr key={item.id}>
                 <td>{new Date(item.createdAt).toLocaleDateString("fr-FR")}</td>
                 <td>{item.id_canne}</td>
-                <td>{item.nom}</td>
                 <td>{item.prenom}</td>
-                  <td className="desar">
+                <td>{item.nom}</td>
+                {/* <td className="ico">
+                  <span className="material-symbols-outlined" onClick={handleClick}>archive</span>
+                </td> */
+                }
+                <td className="ico">
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}
-                      title="Désarchiver"
+                      title="Archiver"
                     >
-                      unarchive
+                      archive
                   </span>
                 </td>
+
               </tr>
             ))
           )}
-            </tbody>      
-      </table>
+        </tbody>
+        </table>
       {/* pagination */}
-      <div className="containerPagination gap-5">
+      <div className="gap-4">
+      <div className="containerPagination">
         {currentPage > 1 && (
           <button onClick={handlePrevPage} className="pagination">Précédent</button>
         )}
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
-        </div>
       </div>
+    </div>
+    </div>
   );
 }
 
-
-export default Archive;
-
+export default Admin;

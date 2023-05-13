@@ -80,9 +80,9 @@ app.use(function (err, req, res, next) {
   
   
   //   parser.on("data", (data) => {
-  //  var pression = data.split("/");
+  //  var humsol = data.split("/");
   
-  //       io.emit("data", {pression: pression});
+  //       io.emit("data", {humsol: humsol});
   //   });
 
 

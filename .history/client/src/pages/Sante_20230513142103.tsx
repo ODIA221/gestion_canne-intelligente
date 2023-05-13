@@ -54,18 +54,18 @@ function Sante(){
       return true;
     } else {
       const dateSelectionnee = new Date(rechercher);
-      /* const dateItem = new Date(item.dateInsertion);
+      const dateItem = new Date(item.dateInsertion);
       return (
         dateSelectionnee.toDateString() === dateItem.toDateString() ||
         dateSelectionnee.toISOString() === dateItem.toISOString()
-      ); */
+      );
     }
   });
 
   const dataAffichee = dataFiltree.slice(start, end);
   return (
-<div className="container" id="datasante" style={{ width: "65vw"}}>
-        <div className="form-group" id="sante">
+    <div className="container">
+      <div className="form-group">
         <label htmlFor="date"></label>
         <input
           onChange={handleSearch}
@@ -76,24 +76,24 @@ function Sante(){
         />
       </div>
       <table className="table border border-dark mt-4">
-        <thead className="the">
+        <thead>
           <tr>
             <th>Jours</th>
-            <th>Données (bat/min)</th>
+            <th>Données (°C)</th>
             
           </tr>
           </thead>
           <tbody>
-           {/*  {dataAffichee.map((item) => (
+            {dataAffichee.map((item) => (
             <tr key={item.id}>
               <td>{new Date(item.dateInsertion).toLocaleDateString()}</td>
-              <td>{item.setPression}</td>
+              <td>{item.Pression}</td>
              
             </tr>
-            ))} */}
+            ))}
             </tbody>
             </table>
-           {/*  <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example">
             <ul className="pagination justify-content-center">
               <li className={`page-item ${active1 ? "active" : ""}`}>
                 <a className="page-link" href="#" onClick={() => handlePagination(1)}>
@@ -106,7 +106,7 @@ function Sante(){
                 </a>
               </li>
             </ul>
-          </nav> */}
+          </nav>
 
       </div>
       );

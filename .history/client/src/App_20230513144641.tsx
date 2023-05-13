@@ -1,5 +1,7 @@
 
 import './App.css'
+import Header from './Component/Header'
+
 import Inscription from './pages/Inscription'
 import Admin from './pages/Admin'
 import Archive from './pages/Archive'

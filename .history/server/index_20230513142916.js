@@ -79,11 +79,11 @@ app.use(function (err, req, res, next) {
     const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
   
   
-  //   parser.on("data", (data) => {
+ /*  //   parser.on("data", (data) => {
   //  var pression = data.split("/");
   
   //       io.emit("data", {pression: pression});
-  //   });
+  //   }); */
 
 
  ////////////////////// 2 Socket //////////////

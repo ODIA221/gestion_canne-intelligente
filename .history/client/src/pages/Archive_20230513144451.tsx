@@ -149,10 +149,12 @@ function Archive() {
         {currentPage > 1 && (
           <button onClick={handlePrevPage} className="pagination">Précédent</button>
         )}
+        <div>
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
         </div>
+      </div>
       </div>
   );
 }

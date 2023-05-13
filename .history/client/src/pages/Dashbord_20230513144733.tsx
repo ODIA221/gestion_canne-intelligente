@@ -5,12 +5,12 @@ import "./Style2.css";
 import Sidebar from '../Component/Sidebar';
 
 const Dashbord = () => {
-  let [user, etatUser] = useState(true);
+  /* let [user, etatUser] = useState(true);
   return (
     <div id='container2'>
       <Header/>
       
-    {!user ? <div id='containerSidebar'><Sidebar/></div>: <></> }
+    {!user ? <div id='containerSidebar'><Sidebar/></div>: <></> } */
     
     <Outlet></Outlet>
     </div>

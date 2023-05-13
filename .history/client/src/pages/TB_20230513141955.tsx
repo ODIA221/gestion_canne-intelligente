@@ -3,7 +3,7 @@ import  io from 'socket.io-client';
 import { useState, useEffect } from 'react'
 
 
-// const [pression, setPression] = useState(0)
+// const [pre, setpre] = useState(0)
 // const [seconde, setSeconde] = useState('')
 //   const [minute, setMinute] = useState('')
 //   const [heure, setHeure] = useState('')
@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react'
 
 const TB = () => {
 
-  const pression = 0
+  const pre = 0
   let seconde : any 
   let minute : any 
   let heure : any 
@@ -36,7 +36,7 @@ const TB = () => {
             },
             body: JSON.stringify({
               jour: periode,
-              pression:  pression,
+              pre:  pre,
             }),
           })
             .then((res) => res.json())
@@ -89,7 +89,7 @@ const TB = () => {
 
     // const socket = io('ws://localhost:5000');
     // socket.on('data', (data) => {
-    //   setPression(data.pression)
+    //   setpre(data.pre)
         
     // })
     
@@ -100,7 +100,7 @@ const TB = () => {
         
         <div  className='border p-2 mt-3'>
             <h5>Rythme cardiaque</h5>
-            <h6>{pression}</h6>
+            <h6>{pre}</h6>
         </div>
         <div  className='border p-2'>
             <h5>Alerter</h5>

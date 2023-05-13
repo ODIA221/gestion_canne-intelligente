@@ -238,7 +238,7 @@ router.patch('/modifierProfile/:id', async(req, res) => {
 
       const historique = new historiqueSchema({
         jour: req.body.jour,
-        pression: req.body.pression,
+        humsol: req.body.humsol,
 
       })
       historique.save()

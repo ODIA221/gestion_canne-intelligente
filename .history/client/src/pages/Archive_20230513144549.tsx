@@ -154,6 +154,7 @@ function Archive() {
         )}
         </div>
       </div>
+      </div>
   );
 }
 
