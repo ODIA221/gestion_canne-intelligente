@@ -238,7 +238,7 @@ router.post('/envoi',  (req, res, next) => {
 
       const historique = new historiqueSchema({
         jour: req.body.jour,
-        pression: req.body.pression,
+        humsol: req.body.humsol,
 
       })
       historique.save()

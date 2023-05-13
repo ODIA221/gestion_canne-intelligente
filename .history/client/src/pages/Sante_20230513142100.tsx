@@ -87,7 +87,7 @@ function Sante(){
             {dataAffichee.map((item) => (
             <tr key={item.id}>
               <td>{new Date(item.dateInsertion).toLocaleDateString()}</td>
-              <td>{item.Pression}</td>
+              <td>{item.pression}</td>
              
             </tr>
             ))}
