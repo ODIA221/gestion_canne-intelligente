@@ -234,3 +234,11 @@ height: 30px;
     font-weight: bold;
 
   }
+
+
+  /* popup confirmation archive dsarchive */
+
+  .message{
+    font-size: large;
+    font-weight: 30px;
+  }

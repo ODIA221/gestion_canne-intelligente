@@ -12,6 +12,7 @@ function Header() {
         // fonction de  déconnexion
         let logout = () => {
           localStorage.removeItem('token')
+          localStorage.removeItem('id')
           navigate('/')
       }
 
@@ -21,19 +22,26 @@ function Header() {
       {/* //Menu de navigation */}
       {!user ? 
       <div id='menuNav' >
-      <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
-      <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
-    </div>:
-           <div id='menuNav' >
-           <button id="btnMenuNav"><Link to="/Dashboard/Admin" className='lien'> Tableau de bord  </Link></button>
-           <button id="btnMenuNav"><Link to="/Dashboard/Inscription" className='lien'> Ajouter utilisateur </Link></button> 
-   
-           <select id="btnMenuNav"  onChange={(e) => navigate(e.target.value)}>
-             <option>Compte</option>
-             <option value='/Dashboard/Modifmdp'>Modification Profile</option>
-             <option value='/'>Déconnexion</option>
-           </select>
-         </div>
+        <button id="btnMenuNav"><Link to="/Dashboard"> Tableau de bord </Link></button>
+        <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
+      </div>:
+      <div id='menuNav' >
+            <button id="btnMenuNav"><Link to="/Dashboard/Admin" className='lien'> Tableau de bord  </Link></button>
+            <button id="btnMenuNav"><Link to="/Dashboard/Inscription" className='lien'> Ajouter utilisateur </Link></button> 
+    
+            <select id="btnMenuNav"  onChange={(e) => navigate(e.target.value)}>
+              <option>Compte</option>
+              <option value='/Dashboard/Modifmdp'>Modification Profile</option>
+            </select>
+            <button  id="btnMenuNav" title='Déconnexiàon'>
+                <span 
+                  className="material-symbols-outlined" 
+                  onClick={logout}>logout
+                </span> 
+            </button>
+             
+           
+        </div>
    
        }
       {/* //logo, description et photo serre */}
