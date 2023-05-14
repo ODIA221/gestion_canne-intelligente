@@ -172,6 +172,9 @@ function Admin() {
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
         </div>
+      </div>
+
+          {/* Pop-up  de confirmation désarchivage*/}
     {dialog.message && (
       <div
         style={{
@@ -247,7 +250,7 @@ function Admin() {
       </div>
     )}
     </div>
-  );
+  
 }
 
 export default Admin;

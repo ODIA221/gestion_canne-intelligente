@@ -172,6 +172,9 @@ function Admin() {
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
         </div>
+      </div>
+
+
     {dialog.message && (
       <div
         style={{

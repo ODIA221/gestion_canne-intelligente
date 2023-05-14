@@ -31,7 +31,7 @@ function Admin() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/listeArches", {
+    fetch("http://localhost:5000/api/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -82,14 +82,14 @@ function Admin() {
   const handleConfirmation = (choose: boolean) => {
     if (choose && idProductRef.current !== null) {
       axios
-        .put(`http://localhost:5000/api/desarchiver/${idProductRef.current}`)
+        .put(`http://localhost:5000/api/archiver/${idProductRef.current}`)
         .then((response) => {
           console.log(response.data.message);
           const updatedData = donnee.map((item: any) =>
             item._id === idProductRef.current ? { ...item, etat: false } : item
           );
           setData(updatedData);
-          window.location.pathname = "/Dashbord/Archive";
+          window.location.pathname = "/Dashbord/Admin";
         })
         .catch((error) => {
           console.error(error);
@@ -111,7 +111,7 @@ function Admin() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         {/* lien pour voir la liste des archivés */}
-        <a href="/Dashbord/Admin">
+        <a href="/Dashbord/Archive">
           <img
             className="ima"
             src="../../src/assets/archi.png"
@@ -148,15 +148,15 @@ function Admin() {
                 <td>{item.id_canne}</td>
                 <td>{item.prenom}</td>
                 <td>{item.nom}</td>
-                  <td className="desar">
+                <td className="ico">
                   <span
                       className="material-symbols-outlined"
                       onClick={() => handleClick(item._id)}
-                      title="Désarchiver"
+                      title="Archiver"
                     >
-                      unarchive
+                      archive
                   </span>
-                </td> 
+                </td>
 
               </tr>
             ))
@@ -171,83 +171,14 @@ function Admin() {
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
-        </div>
-    {dialog.message && (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
-          background: "#d3eaeb",
-          padding: "20px",
-          borderRadius: "10px",
-          width: "30%",
-          height: "30%"
-
-        }}
-        >
-          <div className="dialog-content">
-            <p
-              style={{
-                fontSize: "20px",
-                fontWeight: "bold",
-                color:"black"
-              }}
-            >
-              {dialog.message}
-            </p>
-            <div className="dialog-buttons">
-              <button
-                onClick={() => handleConfirmation(true)}
-                disabled={dialog.isLoading}
-                style={{
-                  background: "red",
-                  color: "white",
-                  padding: "10px",
-                  marginRight: "4px",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-              >
-                <p
-                  style={{
-                    fontWeight:"bold"
-                  }}
-                >
-                  Oui
-                </p>
-              </button>
-              <button
-                onClick={() => handleConfirmation(false)}
-                disabled={dialog.isLoading}
-                style={{
-                  background: "green",
-                  color: "white",
-                  padding: "10px",
-                  marginLeft: "4px",
-                  border: "none",
-                  cursor: "pointer"
-                }}
-              >
-                <p
-                  style={{
-                    fontWeight:"bold"
-                  }}
-                >
-                  Non
-                </p>
-              </button>
-          </div>
-        </div>
       </div>
-    )}
     </div>
   );
 }
 
 export default Admin;
+
+
+
+
+ 

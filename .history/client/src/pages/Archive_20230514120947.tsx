@@ -172,6 +172,11 @@ function Admin() {
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
         </div>
+      </div>
+<<<<<<< HEAD
+=======
+
+          {/* Pop-up  de confirmation désarchivage*/}
     {dialog.message && (
       <div
         style={{
