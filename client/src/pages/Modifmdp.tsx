@@ -6,8 +6,6 @@ import axios from 'axios'
 
 function Modifmdp() {
 
-
-
   /*  hooks pour Modification mot de passe */
   const [mdpActuel, setMdpActuel] = useState("");
   const [mdpNouveau, setMdpNouveau] = useState("");
@@ -236,7 +234,7 @@ function Modifmdp() {
           <div>
             {errors.mdpConfirm && <small className='err'>{errors?.mdpConfirm?.message?.toString() }</small>}
           </div>
-          <button type="submit" id='butins'>Modifié</button>  
+          <button type="submit" id='butins'>Modifier</button>  
 
       </div>
 

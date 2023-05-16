@@ -85,10 +85,6 @@ function Inscription() {
 
   /* Fin modification mot de passse */
 
-
-
-
-
     return(
 
       <div className="container row g-3 gap-5" id='borde' >
@@ -210,54 +206,6 @@ function Inscription() {
               </div>
             </div>
 
-          {/*   <div className="col" id='form'>
-              <label>
-                  Prenom 
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder=""
-                  aria-label=""
-              />
-              <label>
-                  Nom
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-              />
-              <label>
-                  Adresse
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-              />
-              <label>
-                  Téléphone
-                </label>
-              <input 
-                  type="number" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-                  id='telephone'
-                   {...register("telephone", {
-                    pattern:{
-                        value: /^(221|00221|\+221)?(77|78|75|70|76)[0-9]{7}+$/i,
-                        message: "Format du telephone incorrect",
-                    } 
-                })} 
-              />
-         <div>
-                {errors.telephone && <small className='err'>{errors?.telephone?.message?.toString() }</small>}
-              </div> 
-            </div> */}
             <button type="submit" id='butins'>Ajouter</button>  
          </form>    
         </div>
