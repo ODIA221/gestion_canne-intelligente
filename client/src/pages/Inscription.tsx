@@ -203,7 +203,30 @@ function Inscription() {
               {/* Message d'erreurs */}
               <div>
                 {errors.mdpConfirm && <small className='err text-danger'>{errors?.mdpConfirm?.message?.toString() }</small>}
-              </div>
+              </div>             
+            
+              {/* <div className='labelInputConnexion'>
+                 <label>
+                  Téléphone
+                </label>
+                </div>
+              
+              <input 
+                  type="number" 
+                  className="form-control" 
+                  placeholder="" 
+                  aria-label=""
+                  id='telephone'
+                   {...register("telephone", {
+                    pattern:{
+                        value: /^(221|00221|\+221)?(77|78|75|70|76)[0-9]{7}+$/i,
+                        message: "Format du telephone incorrect",
+                    } 
+                })} 
+              />
+         <div>
+                {errors.telephone && <small className='err'>{errors?.telephone?.message?.toString() }</small>}
+              </div>  */}
             </div>
 
             <button type="submit" id='butins'>Ajouter</button>  

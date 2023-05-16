@@ -62,7 +62,7 @@ app.use((req, res, next) => {
   if (!err.statusCode) err.statusCode = 500
   res.status(err.statusCode).send(err.message)
 
-  io = require('socket.io')(servers,
+  /* io = require('socket.io')(servers,
     {
         cors:
         {
@@ -79,11 +79,11 @@ app.use((req, res, next) => {
     const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' })) */
   
   
-  //   parser.on("data", (data) => {
-  //  var humsol = data.split("/");
-  
-  //       io.emit("data", {humsol: humsol});
-  //   });
+    parser.on("data", (data) => {
+      var myBPM = data.split("/")[0]; */
+        // io.emit("data", {myBPM: myBPM});
+        // io.connections()
+    });
 
 
  ////////////////////// 2 Socket //////////////
@@ -106,7 +106,6 @@ app.use((req, res, next) => {
   //    console.log(tempon[0]);
   // });
   
-
 
   
   

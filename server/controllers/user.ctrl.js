@@ -234,12 +234,12 @@ router.patch('/modifierProfile/:id', async(req, res) => {
   }
 
   //historique serre
-router.post('/envoi',  (req, res, next) => {
+/* router.post('/envoi',  (req, res, next) => {
   console.log(req.body)
 
       const historique = new historiqueSchema({
         jour: req.body.jour,
-        humsol: req.body.humsol,
+        pression: req.body.pression,
 
       })
       historique.save()
@@ -256,7 +256,7 @@ router.post('/envoi',  (req, res, next) => {
           
         })
     })
-
+ */
 
 });
 

@@ -118,7 +118,7 @@ function Admin() {
           />
         </a>
       </div>
-      <h4 className="titreActifArchive">Liste des utilisateurs actifs</h4>
+      <h4 className="titreActifArchive">Liste des utilisateurs inactifs</h4>
       <table className="table border border-dark mt-4">
         <thead className="the">
           <tr>
@@ -162,16 +162,14 @@ function Admin() {
         </tbody>
         </table>
       {/* pagination */}
-      <div className="containerPagination">
+      <div className="containerPagination gap-5">
         {currentPage > 1 && (
           <button onClick={handlePrevPage} className="pagination">Précédent</button>
         )}
         {currentPage < pageCount && (
           <button onClick={handleNextPage} className="pagination">Suivant</button>
         )}
-      </div>
-
-          {/* Pop-up  de confirmation désarchivage*/}
+        </div>
     {dialog.message && (
       <div
         style={{
