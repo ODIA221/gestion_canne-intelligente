@@ -28,11 +28,45 @@ function Modifmdp() {
 
 
 /* mettre les valeurs par défaut des champs nom et prenom */
-  useEffect(() => {
+useEffect(() => {
+  const token = localStorage.getItem('token'); // Remplacez par la façon dont vous récupérez le jeton d'authentification
+
+  fetch(`http://localhost:5000/api/profile/${localStorage.getItem('id')}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`, // Inclure le jeton d'authentification dans les en-têtes
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data && data.msg) {
+        const userData = data.msg;
+
+        setNom(userData.nom);
+        setPrenom(userData.prenom);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}, []);
+
+
+
+
+
+
+
+
+
+
+ /*  useEffect(() => {
     setValue("nom", nom);
     setValue("prenom", prenom);
   }, [nom, prenom, setValue]);
-
+ */
 
   /* recupérer value mdpNouveau pour la comparer aveau confirmation  Mdp  */
   const nouveauMdp = watch ('mdpNouveau');
@@ -59,6 +93,7 @@ function Modifmdp() {
           setValue("prenom", prenom);
           setValue("mdpActuel", "");
           setValue("mdpNouveau", "");
+          setValue("mdpConfirm", "");
         }, 3000);
     }else{
 
@@ -105,18 +140,14 @@ function Modifmdp() {
               <span className='text-danger'>*</span>
             </label>
         </div>
-          
-          <input 
-              className="form-control" 
-              type="text"
-              placeholder="........."
-              id='prenom'
-              defaultValue={prenom}
-              {...register("prenom", {
-                required: "Champ Obligatoire",
-                
+        <input 
+            className="form-control" 
+            type="text"
+            id='prenom'
+            defaultValue={prenom}
+            {...register("prenom", {
+              required: "Champ Obligatoire",
             })}
-            /* onChange={(event) => setPrenom(event.target.setValue)} */
           />
           {/* Message d'erreurs */}
           <div>
@@ -130,14 +161,12 @@ function Modifmdp() {
           </div>
           
           <input 
-              className="form-control" 
-              type="text"
-              id='nom'
-              placeholder="........."
-              defaultValue={nom}
-              {...register("nom", {
-                required: "Champ Obligatoire",
-                
+            className="form-control" 
+            type="text"
+            id='nom'
+            defaultValue={nom}
+            {...register("nom", {
+              required: "Champ Obligatoire",
             })}
           />
           {/* Message d'erreurs */}
@@ -156,7 +185,7 @@ function Modifmdp() {
               type="password"
               id='mdpActuel'
               placeholder="........."
-              defaultValue={mdpActuel}
+              /* defaultValue={mdpActuel} */
               /* onChange={(e) => setMdpActuel(e.target.value)} */
               {...register("mdpActuel", {
                 required: "Champ Obligatoire",
@@ -187,7 +216,7 @@ function Modifmdp() {
               type="password"
               id='mdpNouveau'
               placeholder="........."
-              defaultValue={mdpNouveau}
+              /* defaultValue={mdpNouveau} */
               /* onChange={(e) => setMdpNouveau(e.target.value)} */
               {...register("mdpNouveau", {
                 required: "Champ Obligatoire",

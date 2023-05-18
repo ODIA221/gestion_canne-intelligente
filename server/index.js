@@ -79,11 +79,13 @@ app.use((req, res, next) => {
     const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' })) */
   
   
-    parser.on("data", (data) => {
-      var myBPM = data.split("/")[0]; */
-        // io.emit("data", {myBPM: myBPM});
+/*     parser.on("data", (data) => {
+      var myBPM = data.split("/")[0];
+
+    }); */
+
+            // io.emit("data", {myBPM: myBPM});
         // io.connections()
-    });
 
 
  ////////////////////// 2 Socket //////////////

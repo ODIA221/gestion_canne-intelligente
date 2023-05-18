@@ -66,8 +66,8 @@ router.put('/desarchiver/:id', (req, res, next) => {
 
 
 
-/* inscription avec id_canne autogébérer */
-router.post('/ajouter1', async (req, res, next) => {
+/* inscription avec id_canne autogénérer */
+router.post('/ajouter', async (req, res, next) => {
   try {
     const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // obtenir le dernier inscrit
     let canneNumber = 1; // initialiser le numéro de la canne à 1
@@ -232,31 +232,6 @@ router.patch('/modifierProfile/:id', async(req, res) => {
   catch (error) {
       res.status(400).json({ message: error.message })
   }
-
-  //historique serre
-/* router.post('/envoi',  (req, res, next) => {
-  console.log(req.body)
-
-      const historique = new historiqueSchema({
-        jour: req.body.jour,
-        pression: req.body.pression,
-
-      })
-      historique.save()
-        .then((response) => {
-          console.log(response);
-          return res.status(201).json({
-            message: 'inssertion réussie !',
-            result: response,
-          })
-        })
-        .catch((error) => {
-          return res.status(409).json({
-          })
-          
-        })
-    })
- */
 
 });
 

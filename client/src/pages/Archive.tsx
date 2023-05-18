@@ -112,9 +112,9 @@ function Admin() {
         <a href="/Dashbord/Admin">
           <img
             className="ima"
-            src="../../src/assets/archi.png"
+            src="../../src/assets/desarchi.png"
             alt="Achivés"
-            title="liste des archivés"
+            title="liste des actifs"
           />
         </a>
       </div>
