@@ -4,7 +4,6 @@ import serre from '../assets/canne.png'
 import image1 from '../assets/imgHeader.png'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import "../pages/Modifmdp"
 function Header() {
 
   let [user, etatUser] = useState(true);
@@ -13,7 +12,6 @@ function Header() {
         // fonction de  déconnexion
         let logout = () => {
           localStorage.removeItem('token')
-          localStorage.removeItem('id')
           navigate('/')
       }
 
@@ -27,15 +25,13 @@ function Header() {
       <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
-           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button> 
-           {/* <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Ajouter in utilisateur</Link></button>  */}
+           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button>
+           <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Ajouter un utilisateur</Link></button> 
            <select id="btnMenuNav"  onChange={(e) => navigate(e.target.value)}>
-             <option value="/Dashbord/Admin" defaultChecked >Mon Compte</option>
+             <option>Compte</option>
              <option value='/Dashbord/Modifmdp'>Modification Profil</option>
-             <option value='/Dashbord/Inscription'  className='lien'> Ajouter un utilisateur</option> 
-             
+             <option value='/'>Déconnexion</option>
            </select>
-           <button  id="btnMenuNav" title='Se deconnecter'  onClick={logout}><span className="material-symbols-outlined">logout</span> </button>
          </div>
    
        }

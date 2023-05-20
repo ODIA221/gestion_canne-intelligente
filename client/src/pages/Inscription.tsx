@@ -63,6 +63,7 @@ function Inscription() {
                 (document.getElementById("nom") as HTMLInputElement).value; 
                 (document.getElementById("prenom") as HTMLInputElement).value;   
                 (document.getElementById("password") as HTMLInputElement).value; 
+                (document.getElementById("mdpConfirm") as HTMLInputElement).value="";
               }, 3000);
           }else{
       
@@ -70,6 +71,7 @@ function Inscription() {
             (document.getElementById("nom") as HTMLInputElement).value=""; 
             (document.getElementById("prenom") as HTMLInputElement).value="";
             (document.getElementById("password") as HTMLInputElement).value="";
+            (document.getElementById("mdpConfirm") as HTMLInputElement).value="";
             setTimeout(() => {
               window.location.pathname = '/Dashbord/Admin';
            
@@ -84,10 +86,6 @@ function Inscription() {
 
 
   /* Fin modification mot de passse */
-
-
-
-
 
     return(
 
@@ -209,78 +207,9 @@ function Inscription() {
                 {errors.mdpConfirm && <small className='err text-danger'>{errors?.mdpConfirm?.message?.toString() }</small>}
               </div>             
             
-              {/* <div className='labelInputConnexion'>
-                 <label>
-                  Téléphone
-                </label>
-                </div>
-              
-              <input 
-                  type="number" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-                  id='telephone'
-                   {...register("telephone", {
-                    pattern:{
-                        value: /^(221|00221|\+221)?(77|78|75|70|76)[0-9]{7}+$/i,
-                        message: "Format du telephone incorrect",
-                    } 
-                })} 
-              />
-         <div>
-                {errors.telephone && <small className='err'>{errors?.telephone?.message?.toString() }</small>}
-              </div>  */}
+            
             </div>
 
-          {/*   <div className="col" id='form'>
-              <label>
-                  Prenom 
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder=""
-                  aria-label=""
-              />
-              <label>
-                  Nom
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-              />
-              <label>
-                  Adresse
-              </label>
-              <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-              />
-              <label>
-                  Téléphone
-                </label>
-              <input 
-                  type="number" 
-                  className="form-control" 
-                  placeholder="" 
-                  aria-label=""
-                  id='telephone'
-                   {...register("telephone", {
-                    pattern:{
-                        value: /^(221|00221|\+221)?(77|78|75|70|76)[0-9]{7}+$/i,
-                        message: "Format du telephone incorrect",
-                    } 
-                })} 
-              />
-         <div>
-                {errors.telephone && <small className='err'>{errors?.telephone?.message?.toString() }</small>}
-              </div> 
-            </div> */}
             <button type="submit" id='butins'>Ajouter</button>  
          </form>    
         </div>
@@ -288,5 +217,6 @@ function Inscription() {
 
   );
   }
+
 
 export default Inscription;

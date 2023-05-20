@@ -27,8 +27,8 @@ function Header() {
       <button id="btnMenuNav"><Link to="/">Se déconnecter </Link></button> 
     </div>:
            <div id='menuNav' >
-           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button> 
-           {/* <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Ajouter in utilisateur</Link></button>  */}
+           <button id="btnMenuNav"><Link to="/Dashbord/Admin" className='lien'> Tableau de bord  </Link></button>
+           <button id="btnMenuNav"><Link to="/Dashbord/Inscription" className='lien'> Ajouter in utilisateur</Link></button> 
            <select id="btnMenuNav"  onChange={(e) => navigate(e.target.value)}>
              <option value="/Dashbord/Admin" defaultChecked >Mon Compte</option>
              <option value='/Dashbord/Modifmdp'>Modification Profil</option>

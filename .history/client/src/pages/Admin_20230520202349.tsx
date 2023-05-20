@@ -168,7 +168,7 @@ function Admin() {
                       archive
                     </span>
 
-                    {/* <button className="info">
+                    <button className="info">
                       <Link to="/Dashbord/Donneconcerne" className="lien">
                         <span className="material-symbols-outlined" id="inf" title="informations">
                           info
@@ -182,13 +182,13 @@ function Admin() {
                           border_color
                         </span>
                       </Link>
-                    </button> */}
+                    </button>
                   </td>
                 </tr>
                 
               );
             })
-          }
+          
         </tbody>
       </table>
       {/* pagination */}
