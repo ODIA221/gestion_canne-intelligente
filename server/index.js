@@ -9,7 +9,7 @@ const api = require('./controllers/user.ctrl')
 
 /* connexion bd */
 const url = mongoose  
-  .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")
+  .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")/* mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test */
   .then((x) => {
     console.log(`Vous êtes connecté à la base de donnée : "${x.connections[0].name}"`)
   })
