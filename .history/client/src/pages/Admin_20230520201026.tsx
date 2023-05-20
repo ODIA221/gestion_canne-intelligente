@@ -10,7 +10,9 @@ function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [userId, setUserId] = useState("");
-  const [userConnected, setUserConnected] = useState<any | null>(null);
+
+
+
 
   /* hooks msg confirmation */
   const [dialog, setDialog] = useState({
@@ -48,21 +50,6 @@ function Admin() {
       });
   }, []);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/profile/${localStorage.getItem("id")}`);
-        const userData = response.data;
-
-        setUserConnected(userData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
   const filteredData = donnee.filter((item: any) =>
     item.id_canne.includes(searchTerm)
   );
@@ -85,10 +72,12 @@ function Admin() {
 
   const endIndex = startIndex + itemsPerPage;
 
+
   /* popup confirmation désarchiver */
   const handleClick = (userId: string) => {
     idProductRef.current = userId;
-    handleDialog("Voulez-vous vraiment archiver cette utilisateur ?", false, "");
+    handleDialog("Voulez-vous vraiment archiver cette utilisateur ?", false, "",
+    );
   };
 
   const handleConfirmation = (choose: boolean) => {
@@ -110,6 +99,10 @@ function Admin() {
     handleDialog("", false, "");
   };
 
+
+
+
+
   return (
     <div className="container" style={{ width: "75vw" }}>
       <div className="form-group d-flex">
@@ -123,7 +116,7 @@ function Admin() {
           <img
             className="ima"
             src="../../src/assets/archi.png"
-            alt="Archivés"
+            alt="Achivés"
             title="liste des archivés"
           />
         </a>
@@ -140,53 +133,47 @@ function Admin() {
           </tr>
         </thead>
         <tbody>
+
           {filteredData.length === 0 ? (
             <div id="notData">
               <tr>
+
                 <img src={auccuneDonnee} alt="Aucune donnée" />
                 <td colSpan={5} id="dataNot">un utilisateur inexistant !</td>
               </tr>
             </div>
           ) : (
+            filteredData.slice(startIndex, endIndex).map((item: any) => (
+              <tr key={item.id}>
+                <td>{new Date(item.createdAt).toLocaleDateString("fr-FR")}</td>
+                <td>{item.id_canne}</td>
+                <td>{item.prenom}</td>
+                <td>{item.nom}</td>
+                <td className="ico">
+                  <span
+                    className="material-symbols-outlined"
+                    onClick={() => handleClick(item._id)}
+                    title="Archiver"
+                  >
+                    archive
+                  </span>
 
-            filteredData.slice(startIndex, endIndex).map((item: any) => {
-              if (localStorage.getItem('token') && item._id === localStorage.getItem('id') ) {
-                return null; // Ne pas afficher l'utilisateur connecté
-              }
-              return (
-                <tr key={item.id}>
-                  <td>{new Date(item.createdAt).toLocaleDateString("fr-FR")}</td>
-                  <td>{item.id_canne}</td>
-                  <td>{item.prenom}</td>
-                  <td>{item.nom}</td>
-                  <td className="ico">
-                    <span
-                      className="material-symbols-outlined"
-                      onClick={() => handleClick(item._id)}
-                      title="Archiver"
+                  {/* <button className="info">
+                    <Link to="/Dashbord/Donneconcerne" className='lien'> <span className="material-symbols-outlined" id="inf"
+                      title="informations"
                     >
-                      archive
-                    </span>
+                      info
+                    </span> </Link></button> */}
 
-                    <button className="info">
-                      <Link to="/Dashbord/Donneconcerne" className="lien">
-                        <span className="material-symbols-outlined" id="inf" title="informations">
-                          info
-                        </span>
-                      </Link>
-                    </button>
+                  <button className="info">
+                    <Link to="/Dashbord/Modifmdp" className='lien'> <span className="material-symbols-outlined" id="icon" title="modifier">
+                      border_color
+                    </span></Link></button>
+                </td>
 
-                    <button className="info">
-                      <Link to="/Dashbord/Modifmdp" className="lien">
-                        <span className="material-symbols-outlined" id="icon" title="modifier">
-                          border_color
-                        </span>
-                      </Link>
-                    </button>
-                  </td>
-                </tr>
-              );
-            })
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
       {/* pagination */}
@@ -199,7 +186,7 @@ function Admin() {
         )}
       </div>
 
-      {/* Pop-up de confirmation désarchivage */}
+      {/* Pop-up  de confirmation désarchivage*/}
       {dialog.message && (
         <div
           style={{
@@ -208,7 +195,7 @@ function Admin() {
             alignItems: "center",
             justifyContent: "center",
             position: "absolute",
-            top: "            50%",
+            top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
             background: "#d3eaeb",
@@ -216,6 +203,7 @@ function Admin() {
             borderRadius: "10px",
             width: "30%",
             height: "30%"
+
           }}
         >
           <div className="dialog-content">
@@ -278,5 +266,8 @@ function Admin() {
 }
 
 export default Admin;
+
+
+
 
 
