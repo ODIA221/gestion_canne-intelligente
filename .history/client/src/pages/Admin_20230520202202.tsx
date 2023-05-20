@@ -147,7 +147,7 @@ function Admin() {
                 <td colSpan={5} id="dataNot">un utilisateur inexistant !</td>
               </tr>
             </div>
-          ) : 
+          ) : (
 
             filteredData.slice(startIndex, endIndex).map((item: any) => {
               if (localStorage.getItem('token') && item._id === localStorage.getItem('id') ) {
@@ -168,7 +168,7 @@ function Admin() {
                       archive
                     </span>
 
-                    {/* <button className="info">
+                    <button className="info">
                       <Link to="/Dashbord/Donneconcerne" className="lien">
                         <span className="material-symbols-outlined" id="inf" title="informations">
                           info
@@ -182,13 +182,12 @@ function Admin() {
                           border_color
                         </span>
                       </Link>
-                    </button> */}
+                    </button>
                   </td>
                 </tr>
-                
               );
             })
-          }
+          })
         </tbody>
       </table>
       {/* pagination */}

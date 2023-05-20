@@ -35,7 +35,7 @@ function Header() {
              <option value='/Dashbord/Inscription'  className='lien'> Ajouter un utilisateur</option> 
              
            </select>
-           <button  id="btnMenuNav" title='Se deconnecter'  onClick={logout}><span className="material-symbols-outlined">logout</span> </button>
+           <button  id="btnMenuNav" title=''  onClick={logout}><span className="material-symbols-outlined">logout</span> </button>
          </div>
    
        }
