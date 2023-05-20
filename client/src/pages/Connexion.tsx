@@ -90,7 +90,7 @@ const connexion = (e:any) =>{
                     /*  className="form"  */
                         className="formInput" 
                         aria-describedby="emailHelp"
-                        placeholder="Id Canne" 
+                        placeholder="indentifiant" 
                         id="id_canne"
                         {...register("id_canne", {
                             required: "Champ Obligatoire",

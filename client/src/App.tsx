@@ -11,6 +11,9 @@ import Dashbord from './pages/Dashbord'
 import { Route, Routes } from 'react-router-dom'
 import Connexion from './pages/Connexion'
  import TB from './pages/TB'
+ import Auth from './pages/Auth'
+ import ProtectionRoutes from './pages/ProtectionRoutes'
+ 
  
 function App() {
 
@@ -20,17 +23,18 @@ function App() {
     <>
     <Routes>
             <Route index path="/" element={<Connexion/>} />
-            <Route path='/Dashbord' element={<Dashbord/>}>
-              <Route path='Archive' element={<Archive/>}/>
-              <Route path='Admin' element={<Admin/>}/>
-              <Route path='Deplacement' element={<Deplacement/>}/>
-              <Route path='Inscription' element={<Inscription/>}/>
-              <Route path='Sante' element={<Sante/>}/>
-              <Route path='Modifmdp' element={<Modifmdp/>}/>
-              <Route path='Donneconcerne' element={<Donneconcerne/>}/>
-              <Route path='TB' element={<TB/>}/>
+            <Route path='/Dashbord' element={<Auth><Dashbord/></Auth>}>
+              <Route path='Archive' element={<Auth><Archive/></Auth>}/>
+              <Route path='Admin' element={<Auth><Admin/></Auth>}/>
+              <Route path='Deplacement' element={<Auth><Deplacement/></Auth>}/>
+              <Route path='Inscription' element={<Auth><Inscription/></Auth>}/>
+              {/* <Route path='Sante' element={<Sante/>}/> */}
+              <Route path='Modifmdp' element={<Auth><Modifmdp/></Auth>}/>
+              <Route path='Donneconcerne' element={<Auth><Donneconcerne/></Auth>}/>
+              <Route path='TB' element={<Auth>TB</Auth>}/>
 
            </Route>
+           <Route path="*" element={<ProtectionRoutes />} />
 
     </Routes>
     </>
