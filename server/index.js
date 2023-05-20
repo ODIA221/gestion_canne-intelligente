@@ -9,6 +9,7 @@ const api = require('./controllers/user.ctrl')
 
 /* connexion bd */
 const url = mongoose  
+
   .connect("mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test")/* mongodb+srv://aissatou7:766021841Fall@cluster0.wayru7i.mongodb.net/test */
   .then((x) => {
     console.log(`Vous êtes connecté à la base de donnée : "${x.connections[0].name}"`)
@@ -57,7 +58,7 @@ app.use((req, res, next) => {
   })
 })
 
- app.use(function (err, req, res, next) {
+/*  app.use(function (err, req, res, next) {
   console.error(err.message)
   if (!err.statusCode) err.statusCode = 500
   res.status(err.statusCode).send(err.message)
@@ -76,14 +77,16 @@ app.use((req, res, next) => {
     const SerialPort = require('serialport');
     const port2 = new SerialPort('/dev/ttyACM0', { baudRate: 9600} )
     const { ReadlineParser } = require('@serialport/parser-readline');
-    const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' }))
+    const parser = port2.pipe(new ReadlineParser({ delimiter: '\r\n' })) */
   
   
-    parser.on("data", (data) => {
-      var myBPM = data.split("/")[0]; */
-        // io.emit("data", {myBPM: myBPM});
+/*     parser.on("data", (data) => {
+      var myBPM = data.split("/")[0];
+
+    }); */
+
+            // io.emit("data", {myBPM: myBPM});
         // io.connections()
-    });
 
 
  ////////////////////// 2 Socket //////////////

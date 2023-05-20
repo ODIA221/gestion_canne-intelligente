@@ -66,7 +66,7 @@ router.put('/desarchiver/:id', (req, res, next) => {
 
 
 
-/* inscription avec id_canne autogébérer */
+/* inscription avec id_canne autogénérer */
 router.post('/ajouter', async (req, res, next) => {
   try {
     const lastUser = await userSchema.findOne({}, {}, { sort: { 'createdAt' : -1 } }); // obtenir le dernier inscrit
@@ -126,6 +126,7 @@ router.post('/connexion', (req, res) => {
   userSchema
     .findOne({
       id_canne: req.body.id_canne,
+      /* role: super_admin */
     })
     // Verifier si l'utilisateur existe
     .then((user) => {
@@ -232,31 +233,6 @@ router.patch('/modifierProfile/:id', async(req, res) => {
       res.status(400).json({ message: error.message })
   }
 
-  //historique serre
-/* router.post('/envoi',  (req, res, next) => {
-  console.log(req.body)
-
-      const historique = new historiqueSchema({
-        jour: req.body.jour,
-        pression: req.body.pression,
-
-      })
-      historique.save()
-        .then((response) => {
-          console.log(response);
-          return res.status(201).json({
-            message: 'inssertion réussie !',
-            result: response,
-          })
-        })
-        .catch((error) => {
-          return res.status(409).json({
-          })
-          
-        })
-    })
- */
-
 });
 
  
@@ -265,42 +241,3 @@ router.patch('/modifierProfile/:id', async(req, res) => {
 
 module.exports = router
 
-
-
-
-
-/* Inscription  */
-/* router.post('/inscription',  (req, res, next) => {
-  console.log(req.body)
-
-    bcrypt.hash(req.body.password, 10).then((hash) => {
-      const user = new userSchema({
-        prenom: req.body.prenom,
-        nom: req.body.nom,
-        id_canne: req.body.id_canne,
-        password: hash,
-        photo: req.body.photo,
-        prenom1: req.body.prenom1,
-        nom1: req.body.nom1,
-        telephone: req.body.telephone,
-        adresse: req.body.adresse,
-        etat: req.body.etat,
-        role: req.body.role
-      })
-      user.save()
-        .then((response) => {
-          console.log(response);
-          return res.status(201).json({
-            message: 'Inscription réussie !',
-            result: response,
-          })
-        })
-        .catch((error) => {
-          return res.status(409).json({
-            error: error.message.split("id_canne:")[1],
-          })
-          
-        })
-    })
-},
-) */
