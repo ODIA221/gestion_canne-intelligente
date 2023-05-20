@@ -164,11 +164,11 @@ function Admin() {
                     >
                       info
                     </span> </Link></button> */}
-{/* 
+
                   <button className="info">
                     <Link to="/Dashbord/Modifmdp" className='lien'> <span className="material-symbols-outlined" id="icon" title="modifier">
                       border_color
-                    </span></Link></button> */}
+                    </span></Link></button>
                 </td>
 
               </tr>
